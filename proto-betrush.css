@@ -329,9 +329,17 @@
 .bco-lines {
   position: absolute; left: 50%; top: 50%; width: 220cqw; height: 220cqh; translate: -50% -50%;
   object-fit: contain; opacity: .9;
-  animation: bco-lines-spin 22s linear infinite;
+  /* Молния статична, как в макете; маска прорисовывает её слева направо, держит паузу, стирает обратно и снова ждёт */
+  -webkit-mask-image: linear-gradient(90deg, #000 0 50%, transparent 50% 100%); mask-image: linear-gradient(90deg, #000 0 50%, transparent 50% 100%);
+  -webkit-mask-size: 200% 100%; mask-size: 200% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  animation: bco-lines-draw 5.6s cubic-bezier(.65, 0, .35, 1) infinite;
 }
-@keyframes bco-lines-spin { to { transform: rotate(360deg); } }
+@keyframes bco-lines-draw {
+  0%        { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+  30%, 48%  { -webkit-mask-position: 0% 0; mask-position: 0% 0; }
+  78%, 100% { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+}
 .bco-logo { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2cqh; width: 72cqw; }
 .bco-row { display: flex; align-items: flex-end; justify-content: center; gap: 1.5cqw; width: 100%; }
 .bcl {
