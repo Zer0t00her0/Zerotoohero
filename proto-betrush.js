@@ -324,23 +324,11 @@
     if (reduce) root.classList.add('no-anim');
   }
 
-  // Живая обложка в сетке на главной (bento) и на превью-ссылках: тот же логотип BETRUSH по буквам + свечение + линии
+  // Живая обложка в сетке на главной (bento) и на превью-ссылках: логотип BETRUSH из макета + свечение + линии
   const bentoCover = () => `<span class="bco">
     <i class="bco-glow"></i>
     <img class="bco-lines" src="${src('lines.svg')}" alt="" draggable="false">
-    <span class="bco-logo">
-      <span class="bco-row">
-        <img class="bcl" style="--i:0" src="${src('letter-b.svg')}" alt="" draggable="false">
-        <img class="bcl" style="--i:1" src="${src('letter-e.svg')}" alt="" draggable="false">
-        <img class="bcl" style="--i:2" src="${src('letter-t.svg')}" alt="" draggable="false">
-      </span>
-      <span class="bco-row">
-        <img class="bcl" style="--i:3" src="${src('letter-r.svg')}" alt="" draggable="false">
-        <img class="bcl" style="--i:4" src="${src('letter-u.svg')}" alt="" draggable="false">
-        <img class="bcl" style="--i:5" src="${src('letter-s.svg')}" alt="" draggable="false">
-        <img class="bcl" style="--i:6" src="${src('letter-h.svg')}" alt="" draggable="false">
-      </span>
-    </span>
+    <img class="bco-mark" src="${src('bn-badge.svg')}" alt="" draggable="false">
   </span>`;
 
   window.PROTOS = window.PROTOS || {};

@@ -340,13 +340,10 @@
   30%, 48%  { -webkit-mask-position: 0% 0; mask-position: 0% 0; }
   78%, 100% { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
 }
-.bco-logo { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2cqh; width: 72cqw; }
-.bco-row { display: flex; align-items: flex-end; justify-content: center; gap: 1.5cqw; width: 100%; }
-.bcl {
-  position: static; display: block; height: 15cqh; width: auto; object-fit: contain;
-  opacity: 0; transform: translateY(70%);
-  animation: bco-rise .7s calc(var(--i) * .07s) cubic-bezier(.3, 1.6, .4, 1) both,
-             bco-breathe 3.2s calc(1.4s + var(--i) * .1s) ease-in-out infinite;
+.bco-mark {
+  position: relative; display: block; width: 46cqw; height: auto;
+  opacity: 0; transform: translateY(40%);
+  animation: bco-rise .8s .15s cubic-bezier(.3, 1.6, .4, 1) both, bco-breathe 3.2s 1.4s ease-in-out infinite;
 }
 @keyframes bco-rise { to { opacity: 1; transform: none; } }
 @keyframes bco-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.08; } }
