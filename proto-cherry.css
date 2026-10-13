@@ -1,0 +1,36 @@
+/* ——— Подача Drunk Cherry: бордовый фон, фирменный курсив, вишнёвый узор ——— */
+.proto.cherry {
+  display: flex; flex-direction: column; gap: clamp(10px, 1.2vw, 18px);
+  margin-top: 0; padding: 0; background: none; border-radius: 0;
+  font-family: 'DrunkCherryBrand', "DM Sans", serif;
+}
+.cherry .rf {
+  position: relative; overflow: hidden; container-type: inline-size; aspect-ratio: 1920/1080; width: 100%;
+  background: #790132; color: #fff; user-select: none; -webkit-user-select: none;
+}
+.cherry .rf > * { position: absolute; }
+.cherry .rf img { display: block; max-width: none; pointer-events: none; }
+.cherry .rimg { width: 100%; height: 100%; object-fit: cover; left: 0; top: 0; }
+.cherry .ct { margin: 0; white-space: nowrap; line-height: 1.293; text-transform: none; }
+.cherry .ln { display: block; overflow: hidden; }
+.cherry .rw { display: inline-block; clip-path: inset(-40% -25% -20% -25%); }
+.cherry .rwi { display: inline-block; transform: translateY(115%); transition: transform 1.1s cubic-bezier(.2, .9, .25, 1); transition-delay: calc(.1s + var(--i, 0) * 110ms); }
+.cherry .rf.is-in .rwi { transform: none; }
+.cherry .c-rot { position: absolute; display: flex; flex-direction: column; align-items: center; }
+
+/* 0 — обложка: курсивный вордмарк-роспись фоновой текстурой под хедлайном, чуть покачивается */
+.c-pattern { opacity: 0; transition: opacity 1.4s .3s; mix-blend-mode: soft-light; }
+.c0.is-in .c-pattern { opacity: .4; }
+.c0 .is-sway { animation: c-sway 8s ease-in-out infinite; }
+@keyframes c-sway { 0%, 100% { rotate: 0deg; } 50% { rotate: 1.4deg; } }
+
+/* 3, 4 — фото на весь кадр */
+.c3.is-photo-only .rimg, .c4.is-photo-only .rimg { object-fit: cover; }
+.c4 .is-pan { animation: c-pan 18s ease-in-out infinite alternate; }
+@keyframes c-pan { from { transform: scale(1.08) translateX(-1.5%); } to { transform: scale(1.08) translateX(1.5%); } }
+.c3 .is-events { animation: c-kb 12s ease-in-out infinite alternate; }
+@keyframes c-kb { from { transform: scale(1); } to { transform: scale(1.04); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .proto.cherry.no-anim *, .no-anim .cherry * { animation: none !important; transition: none !important; }
+}

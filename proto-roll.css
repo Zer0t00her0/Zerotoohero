@@ -1,0 +1,216 @@
+/* ——— Подача Roll: слайды из макета, слои на своих координатах. Весь текст — DM Sans ——— */
+.proto.rp {
+  --rb: #0233ff; --rr: #f54245; --ry: #ffde67;
+  display: flex; flex-direction: column; align-items: stretch; gap: clamp(10px, 1.2vw, 18px);
+  margin-top: 0; padding: 0; background: none; border-radius: 0;
+  font-family: "DM Sans", "Open Sans", Arial, sans-serif; font-optical-sizing: auto;
+}
+.proto.rp p { margin: 0; }
+
+/* Кадр: пропорции макета, размеры детей — в долях кадра (cqw = 1% ширины кадра) */
+.rf { position: relative; overflow: hidden; container-type: inline-size; background: var(--rb); color: #fff; user-select: none; -webkit-user-select: none; --mx: 0; --my: 0; --sp: 0; }
+.rf > * { position: absolute; }
+.rf img { display: block; max-width: none; pointer-events: none; }
+.rimg { object-fit: cover; }
+.rg, .rfill { display: block; }
+
+/* Текст: обрезка по прописным и базовой линии, как text-box-trim в Figma */
+.rt { margin: 0; white-space: nowrap; letter-spacing: 0; text-box: trim-both cap alphabetic; }
+.rt .ln { display: block; width: max-content; margin-inline: auto; }
+.rt[style*="text-align:left"] .ln { margin-inline: 0; }
+.rt[style*="white-space:normal"] .ln { width: auto; }
+.rt b { font-weight: 1000; }
+.rt.is-outline { color: transparent; -webkit-text-stroke: max(1px, .28cqw) #fff; }
+
+/* Логотип: R, монета, L, L — отдельные слои */
+.r-logo { overflow: visible; fill: #fff; }
+.r-logo .rc { fill: var(--ry); }
+.r-logo .rl, .r-logo .rcw, .r-logo .rc { transform-box: fill-box; transform-origin: center; }
+
+/* Эмодзи: рамка и повёрнутый квадрат внутри */
+.re { display: block; translate: calc(var(--mx) * var(--d) * .1cqw) calc(var(--my) * var(--d) * .1cqw); }
+.re-r { position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+.re-r > img, .re-r .crop { position: absolute; inset: 0; width: 100%; height: 100%; }
+.re-r > img { object-fit: cover; }
+.re-r .crop { overflow: hidden; }
+.re-r .crop img { position: absolute; }
+.re.is-shadow .re-r { filter: drop-shadow(1.85cqw 5.9cqw 2.2cqw rgba(150, 29, 234, .4)); }
+
+/* Маска с растушёвкой, внутри — повёрнутая картинка */
+.rm { translate: calc(var(--mx) * var(--d) * .1cqw) calc(var(--my) * var(--d) * .06cqw); }
+.rm-b { position: absolute; }
+.rm-r { position: absolute; left: 50%; top: 50%; translate: -50% -50%; overflow: hidden; }
+.rm-r img { position: absolute; }
+
+/* ——— Появление ——— */
+.r-slide .is-rise { opacity: 0; translate: 0 18%; transition: opacity .8s, translate 1.1s var(--ease-out); }
+.r-slide.is-in .is-rise { opacity: 1; translate: 0 0; }
+.r-slide .is-rise.d2 { transition-delay: .25s; }
+/* Слова: .rw — окно-маска, .rwi — само слово. В слайдах слово выезжает из-под маски снизу */
+.rw { display: inline-block; clip-path: inset(-40% -25% -14% -25%); }
+.rwi { display: inline-block; transform: translateY(115%); transition: transform 1s cubic-bezier(.2, .9, .25, 1); transition-delay: calc(.1s + var(--d0, 0s) + var(--i) * 85ms); }
+.is-show .rwi { transform: none; }
+
+/* Карточки: стили появления по очереди */
+.rs-cell .rf:not(.fx-mask) .rw { clip-path: none; }
+.rs-cell .rf .rwi { transition: none; }
+.rs-cell .rf.fx-play .rwi { animation: .95s cubic-bezier(.2, .9, .25, 1) both; animation-delay: calc(var(--i) * 85ms); }
+.rs-cell .rf.fx-mask.fx-play .rwi { animation-name: fx-mask; }
+.rs-cell .rf.fx-drop.fx-play .rwi { animation-name: fx-drop; animation-timing-function: linear; animation-duration: 1.1s; }
+.rs-cell .rf.fx-pop.fx-play .rwi { animation-name: fx-pop; }
+.rs-cell .rf.fx-slide.fx-play .rwi { animation-name: fx-slide; }
+.rs-cell .rf.fx-flip.fx-play .rwi { animation-name: fx-flip; transform-origin: 50% 100%; }
+.rs-cell .rf.fx-out .rwi { animation: fx-out .5s cubic-bezier(.6, 0, .8, .4) both; animation-delay: calc(var(--i) * 40ms); }
+.rs-cell .rf.fx-out.fx-mask .rwi { animation-name: fx-out-mask; }
+@keyframes fx-mask { from { transform: translateY(115%); } to { transform: none; } }
+@keyframes fx-out-mask { to { transform: translateY(-115%); } }
+@keyframes fx-drop { 0% { transform: translateY(-260%) rotate(-10deg); opacity: 0; } 45% { transform: translateY(8%) rotate(3deg); opacity: 1; } 62% { transform: translateY(-14%) rotate(-1deg); } 78% { transform: translateY(3%); } 100% { transform: none; } }
+@keyframes fx-pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.18); opacity: 1; } 100% { transform: none; } }
+@keyframes fx-slide { 0% { transform: translateX(-70%) skewX(-18deg); opacity: 0; } 70% { transform: translateX(4%) skewX(4deg); opacity: 1; } 100% { transform: none; } }
+@keyframes fx-flip { 0% { transform: perspective(600px) rotateX(-95deg); opacity: 0; } 70% { transform: perspective(600px) rotateX(12deg); opacity: 1; } 100% { transform: none; } }
+@keyframes fx-out { to { transform: translateY(60%) scale(.6); opacity: 0; } }
+
+/* Герои сторис уходят и возвращаются вместе с надписями: Зевс падает сверху, маг поднимается из-под кадра, рука с монетами выпрыгивает */
+.rs.fx-out .is-hero { animation: none; transition: transform .55s cubic-bezier(.6, 0, .8, .4), opacity .4s; opacity: 0; }
+.rs.fx-out .is-zeus { transform: translateY(-40%); }
+.rs.fx-out .is-wizard { transform: translateY(45%); }
+.rs.fx-out .rimg.is-hero:not(.is-zeus) { transform: scale(.4); }
+.rs.fx-play .is-zeus { animation: r-kb 9s ease-in-out infinite alternate, r-zeus 3.6s ease-in-out infinite, r-zap-img 5.2s linear infinite, fx-hero-down 1.1s cubic-bezier(.2, 1.2, .3, 1) both; }
+.rs.fx-play .is-wizard { animation: r-kb 9s ease-in-out infinite alternate, fx-hero-up 1.2s cubic-bezier(.2, .9, .25, 1) both; }
+.rs.fx-play .rimg.is-hero:not(.is-zeus) { animation: r-float 6s ease-in-out infinite, fx-hero-pop 1s cubic-bezier(.3, 1.5, .5, 1) both; }
+@keyframes fx-hero-down { from { transform: translateY(-40%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fx-hero-up { from { transform: translateY(45%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fx-hero-pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Stake & Roll: набор из макета (DM Sans Black, opsz 14), строка не обрезается */
+.rt.is-stake { text-box: normal; font-variation-settings: "opsz" 14; }
+.r-count { font-style: normal; font-variant-numeric: tabular-nums; }
+
+/* Roll 0: буквы поднимаются, монета вкатывается слева и встаёт на место O */
+.is-cover .rl { opacity: 0; transform: translateY(60%); }
+.is-cover .rcw { opacity: 0; transform: translateX(-420%) rotate(-720deg); }
+.is-cover.is-in .rl { opacity: 1; transform: none; transition: transform 1s var(--ease-out), opacity .5s; }
+.is-cover.is-in .rl2 { transition-delay: .08s; }
+.is-cover.is-in .rl3 { transition-delay: .16s; }
+.is-cover.is-in .rcw { opacity: 1; transform: none; transition: transform 1.6s cubic-bezier(.3, 1.2, .45, 1) .3s, opacity .2s .3s; }
+.rc.is-flip { animation: r-flip 1.1s cubic-bezier(.3, 1.3, .5, 1); }
+@keyframes r-flip { 25% { transform: scaleX(-.15) translateY(-14%); } 50% { transform: translateY(-22%); } 75% { transform: scaleX(-.15) translateY(-8%); } }
+ .is-roll .rc:not(.is-flip), .rs11 .rc, .rs2 .rc { animation: r-wobble 4.2s ease-in-out 2.4s infinite; }
+@keyframes r-wobble { 0%, 80%, 100% { transform: none; } 86% { transform: rotate(-14deg); } 92% { transform: rotate(9deg); } }
+
+/* Свечение дышит */
+.r-slide .rg { animation: r-breathe 5s ease-in-out infinite; }
+@keyframes r-breathe { 50% { opacity: .82; } }
+
+/* Roll 4, 9, 10: фото медленно едут при прокрутке */
+.rimg.is-slow { transform: translateY(calc(var(--sp) * 3%)) scale(1.02); }
+
+/* Roll 5: лента постеров — одно общее полотно, верхний ряд едет вправо, нижний — навстречу, влево */
+.rs-row { overflow: visible; }
+.rs-track { display: flex; gap: .78cqw; width: max-content; height: 100%; animation: r-roll 46s linear infinite; }
+.rs-row.is-slow .rs-track { animation-duration: 58s; animation-delay: -20s; animation-direction: reverse; }
+@keyframes r-roll { from { transform: translateX(calc(-50% - .39cqw)); } to { transform: translateX(0); } }
+.rs-row .rs-cell { position: relative; flex: none; height: 100%; aspect-ratio: 393 / 492; }
+.rs-cell { overflow: hidden; box-shadow: 0 1.4cqw 3cqw rgba(0, 0, 40, .35); }
+.rs-cell > .rf { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Карточка входит в кадр: эмодзи выпрыгивают, руки и логотипы поднимаются, слова всплывают */
+.rs-cell .re { scale: .2; opacity: 0; transition: scale .9s cubic-bezier(.3, 1.6, .5, 1), opacity .4s; }
+.rs-cell .re:nth-of-type(2n) { transition-delay: .08s; } .rs-cell .re:nth-of-type(3n) { transition-delay: .16s; }
+.rs-cell .rm, .rs-cell .rimg { opacity: 0; transform: translateY(9%); transition: opacity .7s, transform 1.1s var(--ease-out); }
+.rs-cell .r-logo { opacity: 0; translate: 0 30%; transition: opacity .6s .2s, translate .9s var(--ease-out) .2s; }
+.rs-cell .rf.is-show .re { scale: 1; opacity: 1; }
+.rs-cell .rf.is-show .rm, .rs-cell .rf.is-show .rimg { opacity: .999; transform: none; }
+.rs-cell .rf.is-show .rm { opacity: 1; }
+.rs-cell .rf.is-show .r-logo { opacity: 1; translate: 0 0; }
+.rs-cell .rimg[style*="opacity:.8"] { transition-delay: .2s; }
+.rs-cell .rf.is-show .rimg[style*="opacity:.8"] { opacity: .8; }
+ .re.is-tilt .re-r { animation: r-tilt 4s ease-in-out infinite; }
+@keyframes r-tilt { 50% { scale: 1.04; rotate: 4deg; } }
+ .re.is-bob .re-r, .re.is-par .re-r { animation: r-bob 4.6s ease-in-out infinite; animation-delay: calc(var(--k) * -.53s); }
+@keyframes r-bob { 50% { translate: -50% -58%; } }
+ .rimg.is-float { animation: r-float 6s ease-in-out infinite; }
+@keyframes r-float { 50% { translate: 0 -1.5%; } }
+ .rm.is-hand .rm-r { animation: r-hand 5s ease-in-out infinite; }
+ .rm.is-ok .rm-r { animation-delay: -2.5s; }
+@keyframes r-hand { 50% { translate: -50% -51.5%; } }
+ .rt.is-give .ln { animation: r-shift 7s ease-in-out infinite; }
+ .rt.is-give .ln + .ln { animation-direction: reverse; }
+@keyframes r-shift { 0%, 100% { translate: -2.5% 0; } 50% { translate: 2.5% 0; } }
+
+/* Постер 100%: буквы WELCOME разбросаны, при наведении собираются в слово */
+.rch {
+  left: var(--x); top: var(--y); translate: -50% 0; font-weight: 1000; line-height: 1; text-box: trim-both cap alphabetic;
+  transition: left .9s cubic-bezier(.6, 0, .2, 1), top .9s cubic-bezier(.6, 0, .2, 1); transition-delay: calc(var(--k) * 30ms);
+}
+.re.is-o { transition: left .9s cubic-bezier(.6, 0, .2, 1), top .9s cubic-bezier(.6, 0, .2, 1); }
+.is-word .rch { left: var(--ax); top: 42.5%; }
+.is-word .re.is-o { left: calc(var(--ax) - 9.36%) !important; top: 38.4% !important; }
+ .re.is-o .re-r { animation: r-spin-o 5s ease-in-out infinite; }
+@keyframes r-spin-o { 0%, 70% { rotate: 0deg; } 85% { rotate: -20deg; } 100% { rotate: 360deg; } }
+
+/* Roll 6: сторис */
+.rs-cell.is-story { border-radius: 1.537cqw; }
+.rs { border-radius: inherit; }
+.rs-timer i { position: absolute; top: 0; bottom: 0; overflow: hidden; border-radius: 2px; background: rgba(255, 255, 255, .4); }
+.rs-timer b { display: block; height: 100%; background: #fff; transform-origin: 0 50%; transform: scaleX(0); transition: transform .5s var(--ease-out); }
+.rs-timer i.is-done b { transform: scaleX(1); }
+.rs-timer i.is-run b { animation: r-bar 3.2s linear forwards; }
+@keyframes r-bar { to { transform: scaleX(1); } }
+.rs-head { display: flex; align-items: center; gap: 3.6cqw; }
+.rs-ava { width: 7.87cqw; height: 7.87cqw; flex: none; }
+.rs-name { font-family: "Open Sans", Arial, sans-serif; font-weight: 400; }
+.rs-name em { margin-left: 1.4cqw; font-style: normal; opacity: .7; }
+.rs-more { display: flex; gap: .9cqw; margin-left: auto; margin-right: 6cqw; }
+.rs-more i { width: .9cqw; height: .9cqw; border-radius: 50%; background: #fff; }
+.rs-x { position: relative; width: 5.2cqw; height: 5.2cqw; }
+.rs-x::before, .rs-x::after { content: ""; position: absolute; left: 50%; top: 50%; width: 6.4cqw; height: .3cqw; background: #fff; translate: -50% -50%; rotate: 45deg; }
+.rs-x::after { rotate: -45deg; }
+.rs-pill { left: 50%; translate: -50% 0; display: flex; align-items: center; gap: .6cqw; padding: .96cqw 2.3cqw; border-radius: 1.98cqw; background: #fff; color: #000; font-family: "Open Sans", Arial, sans-serif; font-weight: 400; line-height: 1.28; letter-spacing: -.024em; text-transform: uppercase; white-space: nowrap; }
+.rs-pill svg { width: 3.7cqw; height: 3.7cqw; fill: none; stroke: #000; stroke-width: 2.4; stroke-linecap: round; }
+ .rs .is-zoom { animation: r-kb 9s ease-in-out infinite alternate; }
+/* Персонажи сторис: Зевс парит и мечет молнии, маг покачивается и светится */
+ .rs .is-zeus { animation: r-kb 9s ease-in-out infinite alternate, r-zeus 3.6s ease-in-out infinite, r-zap-img 5.2s linear infinite; transform-origin: 40% 30%; }
+@keyframes r-zeus { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: -.6% -1.4%; rotate: -1.2deg; } }
+@keyframes r-zap-img { 0%, 84%, 100% { filter: none; } 86% { filter: brightness(1.5) saturate(1.3); } 88% { filter: none; } 90% { filter: brightness(1.35); } 93% { filter: none; } }
+.r-zap { background: radial-gradient(60% 30% at 20% 22%, rgba(140, 220, 255, .55), transparent 70%); opacity: 0; pointer-events: none; mix-blend-mode: screen; }
+ .rs .r-zap { animation: r-zap 5.2s linear infinite; }
+@keyframes r-zap { 0%, 84%, 100% { opacity: 0; } 86% { opacity: 1; } 88% { opacity: 0; } 90% { opacity: .8; } 93% { opacity: 0; } }
+ .rm.is-wizard .rm-r { animation: r-wiz 6s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes r-wiz { 0%, 100% { rotate: -1.2deg; filter: drop-shadow(0 0 0 rgba(200, 80, 255, 0)); } 50% { rotate: 1.2deg; filter: drop-shadow(0 0 3cqw rgba(200, 80, 255, .6)); } }
+/* Кнопка сторис: подсветка дышит, плашка ENTER подпрыгивает */
+ .rs .rg { animation: r-glow 2.4s ease-in-out infinite; }
+@keyframes r-glow { 50% { opacity: .55; } }
+ .rs .rs-pill { animation: r-hop 3s cubic-bezier(.3, 1.6, .5, 1) infinite; }
+@keyframes r-hop { 0%, 70%, 100% { translate: -50% 0; } 78% { translate: -50% -18%; } 86% { translate: -50% 0; } 92% { translate: -50% -6%; } }
+.r-num { font-style: normal; font-variant-numeric: tabular-nums; }
+ .rs .rt.is-btn { animation: r-pulse 3.2s ease-in-out infinite; }
+@keyframes r-kb { from { scale: 1; } to { scale: 1.07; } }
+@keyframes r-pulse { 0%, 40%, 100% { scale: 1; } 55% { scale: 1.05; } }
+
+/* Roll 8: холст с кучей эмодзи на весь кадр, логотип поверх */
+.r-pile { left: 0; top: 0; width: 100%; height: 100%; }
+.r-logo.is-front { z-index: 2; filter: drop-shadow(0 .6cqw 1.6cqw rgba(0, 0, 60, .35)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .proto.rp *, .proto.rp *::before { animation: none !important; transition: none !important; }
+}
+
+/* Слайды и постеры с красной основой (синее свечение поверх) */
+.rf.rs8 { background: #f44245; }
+.rf.rp-give2 { background: #f54447; }
+
+/* ——— Живая обложка Roll в сетке на главной: буквы поднимаются, монета вкатывается на место O и крутится ——— */
+.rb-cover { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; background: #0233ff; container-type: size; --ry: #ffde67; }
+.rb-cover .r-logo { position: static; display: block; width: min(56cqw, 128cqh); height: auto; overflow: visible; }
+.rb-cover .rl { animation: rb-rise 1s cubic-bezier(.16, 1, .3, 1) both; }
+.rb-cover .rl2 { animation-delay: .08s; }
+.rb-cover .rl3 { animation-delay: .16s; }
+.rb-cover .rcw { animation: rb-in 1.6s cubic-bezier(.3, 1.2, .45, 1) .3s both; }
+.rb-cover .rc { animation: rb-spin 4.2s cubic-bezier(.65, 0, .3, 1) 2s infinite; }
+.bento-tile.is-hover .rb-cover .rc { animation: rb-spin-fast .9s linear infinite; }
+@keyframes rb-rise { from { transform: translateY(160%); } }
+@keyframes rb-in { from { transform: translateX(-420%) rotate(-720deg); } to { transform: none; } }
+@keyframes rb-spin { 0%, 45% { transform: none; } 80% { transform: rotate(380deg); } 90%, 100% { transform: rotate(360deg); } }
+@keyframes rb-spin-fast { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .rb-cover * { animation: none !important; } }

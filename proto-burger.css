@@ -1,0 +1,30 @@
+/* ——— Подача Burger Heroes: уличный граффити, красный/чёрный/белый ——— */
+.proto.burger {
+  display: flex; flex-direction: column; gap: clamp(10px, 1.2vw, 18px);
+  margin-top: 0; padding: 0; background: none; border-radius: 0;
+  font-family: 'Anton', "DM Sans", sans-serif;
+}
+.burger .rf {
+  position: relative; overflow: hidden; container-type: inline-size; aspect-ratio: 1920/1080; width: 100%;
+  background: #cf1414; color: #fff; user-select: none; -webkit-user-select: none;
+}
+.burger .rf > * { position: absolute; }
+.burger .rf img { display: block; max-width: none; pointer-events: none; }
+.burger .rimg.is-photo { width: 100%; height: 100%; object-fit: cover; left: 0; top: 0; }
+.burger .bt { margin: 0; white-space: nowrap; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 .3cqw 1cqw rgba(0, 0, 0, .35); }
+.burger .b-plate { background: #1a1a1a; border-radius: .8cqw; opacity: 0; transform: translateY(10%); transition: opacity .8s, transform .8s cubic-bezier(.2, .9, .25, 1); }
+.burger .rf.is-in .b-plate { opacity: .88; transform: none; }
+.burger .ln { display: block; overflow: hidden; }
+.burger .rw { display: inline-block; clip-path: inset(-40% -25% -20% -25%); }
+.burger .rwi { display: inline-block; transform: translateY(115%); transition: transform 1s cubic-bezier(.2, .9, .25, 1); transition-delay: calc(.1s + var(--i, 0) * 110ms); }
+.burger .rf.is-in .rwi { transform: none; }
+
+.is-breathe { animation: b-breathe 6s ease-in-out infinite; transform-origin: 50% 60%; }
+.is-sway { animation: b-sway 7s ease-in-out infinite; transform-origin: 50% 55%; }
+@keyframes b-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.035; } }
+@keyframes b-sway { 0%, 100% { rotate: -1deg; } 50% { rotate: 1deg; } }
+.is-pan { animation: b-pan 16s ease-in-out infinite alternate; }
+.is-pan-slow { animation: b-pan 24s ease-in-out infinite alternate; }
+@keyframes b-pan { from { transform: scale(1.08) translateX(-1.5%); } to { transform: scale(1.08) translateX(1.5%); } }
+
+.proto.burger.no-anim *, .no-anim .burger * { animation: none !important; transition: none !important; }

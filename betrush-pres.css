@@ -1,0 +1,543 @@
+
+:host{--yellow:#ffe946;--black:#111;--teal:#22e4c9;--pad:clamp(22px,4vw,72px)}*{box-sizing:border-box}:host{display:block;position:relative;color-scheme:light;margin:0;background:var(--black);color:var(--black);font-family:Circle,Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}h1,h2,h3,p,figure{margin:0}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:6px}.skip{position:fixed;left:20px;top:-100px;background:var(--black);color:var(--yellow);padding:14px;z-index:100}.skip:focus{top:10px}.nav{height:74px;position:absolute;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);background:var(--yellow);border-bottom:1px solid #1113}.nav-logo{width:58px}.nav-logo img{width:100%;height:34px}.nav-caption{font-size:12px;letter-spacing:.08em}.nav-right{display:flex;align-items:center;gap:32px;font-size:11px;letter-spacing:.05em}.nav button{border:0;background:transparent;padding:12px 0;cursor:pointer;font-size:11px;letter-spacing:.05em}.nav button span{margin-left:6px;border-bottom:1px solid}.progress{position:absolute;bottom:-1px;left:0;height:2px;background:var(--black);width:100%;transform:scaleX(0);transform-origin:left}.yellow{background:var(--yellow)}.dark{background:var(--black);color:var(--yellow)}section{position:relative;overflow:hidden}.chapter-label{position:relative;z-index:3;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.06em;padding:28px 0;border-top:1px solid currentColor;margin:0 var(--pad)}.chapter-label span:last-child{opacity:.55}.eyebrow{font-size:11px;letter-spacing:.08em}.hero{height:max(780px,100svh);max-height:1200px;background:var(--yellow);padding-top:74px}.hero-top{position:relative;z-index:4;display:flex;justify-content:space-between;margin:32px var(--pad);font-size:11px;letter-spacing:.08em}.hero-lines{position:absolute;width:145%;max-width:none;left:-30%;top:-70%;height:230%;opacity:.5;object-fit:fill}.hero-glow{position:absolute;width:85%;max-width:none;left:-2%;top:14%;height:70%;object-fit:fill}.wordmark{position:relative;display:block;width:100%;aspect-ratio:872.256/500}.wordmark img{position:absolute;max-width:none}.hero-logo{position:absolute;width:61%;left:7%;top:23%;z-index:2}.hero-player{position:absolute;max-width:none;width:78%;right:-23%;top:0;z-index:3;will-change:transform}.hero-bottom{position:absolute;bottom:36px;left:var(--pad);right:var(--pad);z-index:5;display:flex;align-items:flex-end;justify-content:space-between}.hero-bottom p{font-size:clamp(20px,2.2vw,36px);line-height:1.12;margin-top:10px}.scroll-link{display:flex;gap:30px;align-items:center;font-size:10px;letter-spacing:.06em}.scroll-link span{font-size:34px}.idea{padding-top:26px}.intro{padding:70px var(--pad) 20px;display:grid;grid-template-columns:1.3fr 1fr;gap:9vw;align-items:end}h2{font-size:clamp(44px,6.8vw,110px);letter-spacing:-.05em;font-weight:650;line-height:.93}.intro p,.identity-heading p,.media-intro p{font-size:clamp(17px,1.65vw,24px);line-height:1.38;max-width:460px}.trust-scene{height:40vw;min-height:290px;position:relative;overflow:hidden;margin-top:30px}.trust-type{position:absolute;width:88%;height:70%;object-fit:contain;left:6%;top:15%;filter:invert(88%) sepia(76%) saturate(517%) hue-rotate(351deg) brightness(105%);z-index:2}.trust-glow{position:absolute;left:5%;top:20%;width:90%;height:65%;object-fit:fill;opacity:.52}.trust-lines{position:absolute;left:-10%;top:-90%;width:120%;height:280%;opacity:.35;filter:invert(1)}.idea-bottom{display:flex;align-items:end;justify-content:space-between;padding:0 var(--pad) 60px}.idea-bottom span{font-size:11px;letter-spacing:.06em}.idea-bottom p{font-size:24px;line-height:1.12}.identity{padding-top:26px}.identity-heading{display:grid;grid-template-columns:1.3fr 1fr;gap:9vw;align-items:end;padding:60px var(--pad)}.logo-study{margin:15px var(--pad) 60px;position:relative;padding:20px 0 70px;border-bottom:1px solid #1115}.logo-study .wordmark{width:67%;margin:auto}.study-note{position:absolute;right:0;bottom:28px;font-size:10px;line-height:1.4;letter-spacing:.08em}.type-row{display:flex;justify-content:space-between;margin:0 var(--pad);font-size:11px;letter-spacing:.06em}.type-specimen{font-size:clamp(72px,14vw,235px);line-height:1;letter-spacing:-.055em;padding:18px var(--pad) 60px;font-weight:620}.type-specimen span{font-size:clamp(34px,6.1vw,95px);letter-spacing:-.045em}.palette{display:flex;height:100px;font-size:11px;letter-spacing:.05em}.palette>div{display:flex;align-items:center;justify-content:space-between;padding:0 3vw;border-top:1px solid #111;gap:12px}.palette-yellow{width:50%}.palette-black{background:var(--black);color:var(--yellow);width:25%}.palette-teal{background:var(--teal);width:25%}.sport{padding-top:26px}.sport-scene{height:66vw;max-height:1000px;min-height:660px;position:relative}.sport-title{font-size:clamp(115px,20vw,320px);line-height:.79;letter-spacing:-.06em;font-weight:700;position:absolute;z-index:1;left:var(--pad);top:70px}.sport-title span{display:block}.sport-person{height:100%;width:65%;object-fit:contain;object-position:center bottom;position:absolute;bottom:0;right:0;z-index:2}.sport-lines{position:absolute;width:150%;max-width:none;left:-15%;top:-50%;height:180%;filter:invert(1);opacity:.4}.sport-glow{position:absolute;width:75%;height:95%;right:-10%;top:0;object-fit:fill;opacity:.6}.sport-caption{position:absolute;z-index:4;bottom:40px;right:var(--pad);background:var(--black);padding:20px;font-size:10px;letter-spacing:.06em}.sport-caption p{font-size:17px;line-height:1.35;margin-top:15px;letter-spacing:0}.match-scene{height:66vw;max-height:1000px;min-height:600px;overflow:hidden;position:relative}.match-person{position:absolute;right:20%;top:-8%;width:58%;height:110%;object-fit:contain;max-width:none}.match-lines{position:absolute;left:-10%;top:-30%;width:120%;height:160%;max-width:none;opacity:.5}.match-top{position:relative;display:flex;justify-content:space-between;margin:30px var(--pad);font-size:10px;letter-spacing:.07em;z-index:3}.match-title{position:absolute;bottom:21%;left:var(--pad);right:var(--pad);z-index:2}.match-title img{width:100%}.match-copy{position:absolute;bottom:45px;left:var(--pad);right:var(--pad);display:flex;align-items:end;justify-content:space-between;z-index:4}.match-copy p{font-size:clamp(28px,3.5vw,56px);line-height:1}.match-copy span{font-size:11px;letter-spacing:.08em}.match-badge{position:absolute;width:90px;right:var(--pad);top:90px}.ball-break{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:70px var(--pad);min-height:520px}.ball-break h3{font-size:clamp(48px,6.7vw,108px);line-height:.95;letter-spacing:-.045em;margin-top:32px;font-weight:620}.brand-ball{width:100%;max-height:600px;object-fit:contain}.digital,.offline{padding-top:26px}.media-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:9vw;padding:60px var(--pad) 80px;align-items:end}.full-media{position:relative;width:100%}.full-media>img{width:100%;height:auto}.full-media figcaption{padding:24px var(--pad) 42px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.08em}.merch-scene{position:relative;min-height:650px;height:54vw;margin-top:40px}.merch-copy{position:absolute;z-index:3;left:var(--pad);top:6%;width:35%}.merch-copy h2{font-size:clamp(50px,6vw,98px);margin:30px 0}.merch-copy p{font-size:19px;line-height:1.35;max-width:350px}.merch-photo{position:absolute;width:80%;max-width:none;right:-13%;top:0;height:100%;object-fit:cover;mix-blend-mode:multiply}.closing{padding-top:26px}.closing-line{font-size:clamp(50px,8.5vw,138px);line-height:.96;letter-spacing:-.045em;padding:65px var(--pad) 40px;font-weight:620}.closing-mark{width:64%;margin:10px auto 70px;filter:invert(88%) sepia(76%) saturate(517%) hue-rotate(351deg) brightness(105%)}.closing-bottom{display:flex;justify-content:space-between;padding:30px var(--pad) 70px;border-top:1px solid #ffe94644}.closing-bottom p{font-size:12px;line-height:1.7;letter-spacing:.04em}.closing-bottom nav{display:grid;grid-template-columns:1fr 1fr;gap:18px 55px;font-size:15px}.closing-bottom a:hover{text-decoration:underline}footer{padding:24px var(--pad);border-top:1px solid #ffe94644;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.06em}.reveal{opacity:1;transform:none}:host(.js-motion) .reveal{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .95s cubic-bezier(.16,1,.3,1)}:host(.js-motion) .reveal.seen{opacity:1;transform:none}:host(.motion-off) .reveal{opacity:1;transform:none;transition:none}.hero-logo{animation:enter .95s cubic-bezier(.16,1,.3,1) both}.hero-player{animation:player-enter 1.1s cubic-bezier(.16,1,.3,1) both}:host(.motion-off) .hero-logo,:host(.motion-off) .hero-player{animation:none}@keyframes enter{from{opacity:0;translate:0 45px}to{opacity:1;translate:0 0}}@keyframes player-enter{from{opacity:0;translate:40px 0}to{opacity:1;translate:0 0}}
+@media(min-width:1800px){.hero-logo{width:53%;top:18%}.hero-player{width:68%;right:-20%}}
+@media(max-width:900px){.nav-caption{display:none}.hero{height:850px;min-height:95svh}.hero-logo{width:77%;left:5%;top:23%}.hero-player{width:105%;right:-50%;top:13%}.hero-top span:last-child{display:none}.hero-bottom{align-items:start}.scroll-link{font-size:9px;max-width:130px;line-height:1.6;gap:15px}.intro,.identity-heading,.media-intro{grid-template-columns:1fr;gap:35px;padding-top:45px}.intro p,.identity-heading p,.media-intro p{max-width:520px}.logo-study .wordmark{width:90%}.sport-person{width:80%;right:-12%}.sport-title{font-size:24vw}.sport-caption{bottom:20px;padding:16px}.sport-caption p{font-size:14px}.match-person{right:0;width:100%}.match-top span:last-child{display:none}.palette>div{flex-direction:column;justify-content:center;align-items:start}.merch-copy{width:40%}.merch-copy p{font-size:16px}.merch-photo{width:95%;right:-26%}.closing-bottom nav{gap:18px 25px}.ball-break{min-height:420px}.idea-bottom p{font-size:19px}}
+@media(max-width:600px){.nav{height:64px}.nav-logo{width:48px}.nav-logo img{height:29px}.nav-right{gap:22px;font-size:10px}.nav button{font-size:10px}.hero{height:790px;min-height:100svh;max-height:900px;padding-top:64px}.hero-top{margin-top:24px;font-size:10px}.hero-logo{top:22%;width:92%;left:3%}.hero-player{top:31%;width:130%;right:-51%}.hero-glow{width:140%;left:-40%;top:10%;height:65%}.hero-bottom{bottom:25px}.hero-bottom p{font-size:25px}.hero-bottom .eyebrow{font-size:9px}.scroll-link{max-width:100px;font-size:8px;gap:12px}.chapter-label{padding:24px 0;font-size:10px}.chapter-label span:last-child{display:none}h2{font-size:54px}.intro{padding-bottom:0}.intro p,.identity-heading p,.media-intro p{font-size:18px}.trust-scene{height:260px;margin:0}.trust-type{width:95%;left:2.5%}.idea-bottom{padding-bottom:40px;display:block}.idea-bottom p{margin-top:24px;font-size:25px}.idea-bottom span{font-size:9px}.identity-heading{padding-bottom:35px}.logo-study{padding-bottom:50px;margin-bottom:35px}.logo-study .wordmark{width:100%}.study-note{font-size:8px;bottom:15px}.type-row{font-size:9px}.type-specimen{font-size:22vw;padding-bottom:40px}.type-specimen span{font-size:7.2vw}.palette{height:86px;font-size:9px}.palette-yellow{width:40%}.palette-black,.palette-teal{width:30%}.sport-scene{min-height:700px}.sport-title{top:30px;font-size:29vw}.sport-person{width:115%;right:-18%;height:81%}.sport-caption{right:var(--pad);bottom:16px;max-width:230px;padding:12px 16px}.sport-caption span{font-size:8px}.sport-caption p{font-size:13px;margin-top:8px}.sport-glow{width:120%;right:-30%}.match-scene{height:690px;min-height:0}.match-person{height:90%;width:125%;right:-12%;top:-2%}.match-top{font-size:8px}.match-title{bottom:29%;left:12px;right:12px}.match-copy{bottom:32px;display:block}.match-copy p{font-size:36px}.match-copy span{display:block;margin-top:22px;font-size:9px}.match-badge{width:60px;top:70px}.ball-break{display:block;padding-top:50px;padding-bottom:35px}.ball-break h3{font-size:62px}.ball-break .eyebrow{font-size:9px}.brand-ball{width:87%;margin:20px auto 0}.media-intro{padding-bottom:45px}.full-media figcaption{padding-top:15px;padding-bottom:30px;font-size:9px}.full-media>img{min-height:300px;object-fit:cover}.merch-scene{height:770px;min-height:0;margin-top:20px}.merch-copy{top:25px;width:auto;right:var(--pad)}.merch-copy h2{font-size:58px;margin:20px 0}.merch-copy p{font-size:18px;max-width:330px}.merch-copy .eyebrow{font-size:9px}.merch-photo{height:440px;top:auto;bottom:0;right:-22%;width:140%;object-fit:contain}.closing-line{font-size:15vw;padding-top:45px}.closing-mark{width:88%;margin-bottom:40px}.closing-bottom{display:block;padding-bottom:40px}.closing-bottom nav{margin-top:30px;grid-template-columns:1fr;font-size:15px;gap:16px}footer{font-size:8px;gap:20px}.nav a,.closing a,footer a{min-height:24px;display:flex;align-items:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}:host(.js-motion) .reveal{opacity:1;transform:none}}
+
+/* The supplied variable face uses its terminal master for solid lettering. */
+:host{font-variation-settings:"wght" 1000}h2,h3,.type-specimen,.sport-title,.closing-line{font-variation-settings:"wght" 1000}
+
+
+@media(max-width:900px){.nav .nav-caption{display:none}}
+@media(max-width:600px){.hero-player{top:45%}.nav-right{white-space:nowrap}.index-link{white-space:nowrap}}
+
+@media(max-width:600px){.hero-bottom p{font-size:24px}.hero-bottom .scroll-link{max-width:85px}.sport-title{font-size:28vw}.intro h2{font-size:48px}.media-intro h2{font-size:49px}}
+
+.sport-note{display:flex;justify-content:space-between;gap:20px;padding:24px var(--pad);font-size:10px;letter-spacing:.06em;border-top:1px solid #ffe94633}@media(max-width:600px){.sport-note{font-size:8px}}
+/* Original brand language: yellow canvas, black lettering, blurred cyan text plates. */
+:host{--teal:#00ebea}:host,.dark{background:var(--yellow);color:var(--black)}.trust-type,.closing-mark,.trust-lines,.sport-lines{filter:none}.trust-glow{opacity:1;left:0;top:13%;width:100%;height:74%;object-fit:fill}.trust-type{z-index:2}.trust-lines{opacity:.5}.hero-glow{left:0;top:18%;width:75%;height:54%;object-fit:fill}.hero-logo{z-index:3}.hero-player{width:55%;right:-13%;top:12%;z-index:2}.hero-logo{width:56%;left:5%;top:26%}.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2,.ball-break h3,.closing-line{position:relative;isolation:isolate}.intro h2:before,.identity-heading h2:before,.media-intro h2:before,.merch-copy h2:before,.ball-break h3:before,.closing-line:before{content:"";position:absolute;left:-18%;top:-16%;width:133%;height:134%;background:url('img/betrush-live/r5c-glow.svg') center/100% 100% no-repeat;z-index:-1;pointer-events:none}.logo-study,.closing-mark{isolation:isolate}.study-glow,.closing-glow{position:absolute;width:85%;height:100%;object-fit:fill;left:7.5%;top:-3%;z-index:-1;max-width:none}.closing-mark{position:relative}.closing-glow{left:-20%;width:140%;height:120%;top:-10%}.sport-glow{left:-4%;right:auto;top:8%;width:70%;height:90%;opacity:1;object-fit:fill}.sport-person{width:43%;right:2%}.sport-title{font-size:18vw;z-index:3}.sport-title span{position:relative}.sport-note,.closing-bottom,footer{border-color:#1114}.match-plaque{position:absolute;left:0;bottom:0;width:100%;height:52%;object-fit:fill;z-index:1}.match-title{z-index:3}.match-copy{z-index:4}.brand-plaque:before{content:"";position:absolute;width:118%;height:240%;left:-9%;top:-65%;background:url('img/betrush-live/bn-glow2.svg') center/100% 100% no-repeat;z-index:-1}.brand-plaque{isolation:isolate}.palette{height:75px}.merch-scene{height:auto;min-height:0;display:block;margin-top:50px}.merch-copy{position:relative;left:auto;top:auto;width:auto;display:grid;grid-template-columns:1.3fr 1fr;column-gap:9vw;padding:40px var(--pad) 60px;align-items:end}.merch-copy .eyebrow{grid-column:1/-1}.merch-copy h2{margin:28px 0 0}.merch-copy p{max-width:460px;font-size:clamp(17px,1.65vw,24px)}.merch-photo{position:relative;width:100%;height:auto;right:auto;top:auto;bottom:auto;max-width:100%;object-fit:contain;mix-blend-mode:normal}.closing-mark{filter:none}.sport-scene,.ball-break{color:var(--black)}
+/* Social artwork is shown at its original proportions, as brand applications. */
+.social-board{padding:20px var(--pad) 0;background:var(--yellow)}.social-track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px) clamp(18px,3vw,48px)}.social-art{position:relative;margin:0;min-width:0;aspect-ratio:595.75/744.69;container-type:inline-size;overflow:hidden;background:var(--yellow)}.social-art figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.social-art img{max-width:none;pointer-events:none}.social-art .rc,.social-art .tc{width:100%;height:100%;position:relative;overflow:hidden;background:var(--yellow);container-type:inline-size}.social-art .rc>*,.social-art .tc>*{position:absolute}.social-art .rimg{display:block}.social-art .tc-photo{object-fit:cover}.social-art .tc-part{display:block;overflow:visible}.social-art .tc-part .rw,.social-art .tc-part .rwi{display:block;width:100%;height:100%}.social-art .tc-part img{width:100%;height:100%;object-fit:contain}.social-art .pc-badge{object-fit:contain}.social-art .pc-badge-rot img{position:absolute;left:50%;top:50%;width:175.46%;height:57.01%;object-fit:contain}.social-art .pc-rot-ccw img{transform:translate(-50%,-50%) rotate(-90deg)}.social-art .pc-rot-cw img{transform:translate(-50%,-50%) rotate(90deg)}.social-art .fb-glowwrap img,.social-art .fb-swirl img{width:100%;height:100%}.social-art .rc-tickwrap{inset:0;overflow:hidden}.social-art .rc-tickrow{position:absolute}.social-art .rc-tickrow img{width:100%;height:100%;filter:brightness(0);opacity:.23}.social-art .rc-tickrow:nth-child(n){--i:0}.social-art .rc-tickrow:nth-child(even){--i:1}.social-art .rc-glowwrap{left:50%;top:50%;width:135.834%;height:56.667%;transform:translate(-50%,-50%)}.social-art .rc-glowinset{position:absolute;inset:-18.82% -9.82%}.social-art .rc-glowimg{position:static;width:100%;height:100%}.social-art .pc-glow{top:40%}.social-art .r5c-glow{height:38.22%}.social-art .r5c-glowinset{inset:-27.91% -9.82%}.social-art .rc-flip>*{position:absolute}.social-art .rc-lines{opacity:.7}.social-art .pc-word img,.social-art .wt-letter{position:absolute}.social-art .r5c-bet{filter:brightness(0);opacity:.16}.social-art .rc-check{border:.35cqw solid var(--black);border-radius:.5cqw;background:var(--teal)}.social-art .rc-yes{object-fit:contain}.social-bottom{padding:28px var(--pad) 65px;display:flex;justify-content:space-between;gap:24px;font-size:10px;letter-spacing:.06em}.social-art .tc-lines{opacity:.7}.social-art .tc-overlay{opacity:1}.social-art .rc-tickrow:nth-child(even){animation:social-ticker-r 10s ease-in-out infinite}.social-art .rc-tickrow:nth-child(odd){animation:social-ticker-l 10s ease-in-out infinite}.social-art .rc-glowimg,.social-art .fb-glowwrap{animation:brand-breathe 6s ease-in-out infinite}.social-art .rc-flip{animation:social-word 6s ease-in-out infinite}.social-art .rc-flip-h{animation-delay:-.25s}.social-art .r5c-textwrap{animation:social-word 6s ease-in-out infinite}.social-art .r5c-bet{animation:social-backdrop 9s ease-in-out infinite}.social-art .pc-word{animation:social-poll 7s ease-in-out infinite;animation-delay:calc(var(--i)*.12s);transform-origin:left center}.social-art .rc-check{animation:social-check 7s ease-in-out infinite}.social-art .tc-part{animation:social-word 6s ease-in-out infinite;animation-delay:calc(var(--i)*.08s)}.social-art .fb-swirl{animation:social-spin 30s linear infinite}.social-art .fb-ball{animation:social-word 6s ease-in-out infinite}.social-art .tc-photo{animation:social-photo 9s ease-in-out infinite}.social-art *{animation-play-state:paused!important}.social-board.is-live .social-art *{animation-play-state:running!important}:host(.motion-off) .social-art *{animation:none!important;transform:none}:host(.motion-off) .social-art .pc-badge-rot img{transform:translate(-50%,-50%) rotate(-90deg)}:host(.motion-off) .social-art .pc-rot-cw img{transform:translate(-50%,-50%) rotate(90deg)}:host(.motion-off) .social-art .rc-glowwrap{transform:translate(-50%,-50%)}
+@keyframes social-ticker-l{0%,100%{transform:translateX(-5%)}50%{transform:translateX(5%)}}@keyframes social-ticker-r{0%,100%{transform:translateX(5%)}50%{transform:translateX(-5%)}}@keyframes social-word{0%,100%{translate:0 0;scale:1}50%{translate:0 -1.2cqw;scale:1.025}}@keyframes social-backdrop{0%,100%{translate:0 0}50%{translate:0 2cqw}}@keyframes social-poll{0%,12%,100%{opacity:1;translate:0 0}6%{opacity:.25;translate:0 3cqw}20%,90%{opacity:1;translate:0 0}}@keyframes social-check{0%,12%,100%{background:transparent}20%,90%{background:var(--teal)}}@keyframes social-spin{to{rotate:360deg}}@keyframes social-photo{0%,100%{scale:1}50%{scale:1.025}}@keyframes brand-breathe{0%,100%{scale:1;opacity:.95}50%{scale:1.035;opacity:1}}
+@media(max-width:900px){.merch-copy{grid-template-columns:1fr;gap:20px}.merch-copy h2{margin-top:0}.merch-copy p{max-width:520px}.hero-player{width:65%;right:-20%;top:19%}.hero-logo{width:63%;top:26%}.sport-title{font-size:20vw}.sport-person{width:47%;right:0}.social-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}.sport-glow{width:75%;left:-10%}}
+@media(max-width:600px){.hero-logo{top:17%;width:90%;left:5%}.hero-player{top:43%;right:-8%;width:72%}.hero-glow{left:-13%;top:10%;width:120%;height:40%}.hero-bottom{z-index:4}.hero-bottom p{max-width:230px}.sport-title{top:32px;font-size:24vw;left:var(--pad)}.sport-person{width:65%;height:69%;right:-8%;bottom:0}.sport-glow{top:5%;height:65%;width:110%;left:-30%}.sport-scene{min-height:660px}.social-board{padding:15px 0 0}.social-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:28px;padding:0 var(--pad) 22px;scrollbar-color:var(--black) var(--yellow)}.social-art{flex:0 0 83%;scroll-snap-align:center}.social-bottom{font-size:8px;padding-bottom:35px}.social-bottom span:last-child{display:none}.merch-scene{height:auto;min-height:0}.merch-copy{padding-top:25px;padding-bottom:45px;right:auto}.merch-copy h2{font-size:58px;margin:10px 0}.merch-photo{width:100%;height:auto;position:relative;right:auto;bottom:auto;top:auto}.match-person{width:92%;right:4%;top:-2%;height:70%}.match-title{bottom:27%}.match-plaque{height:48%}.study-glow{width:120%;left:-10%}}
+/* Shared twelve-column editorial grid. */
+:host{--pad:clamp(24px,4vw,88px);--gap:clamp(18px,2vw,40px)}:host{font-weight:500;font-variation-settings:"wght" 500}h2,h3,.closing-line,.sport-title{font-variation-settings:"wght" 1000}h2{font-size:clamp(44px,6vw,106px)}.intro,.identity-heading,.media-intro,.merch-copy{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:26px;align-items:start;padding:72px var(--pad) 80px}.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2{grid-column:1/8;margin:0}.intro p,.identity-heading p,.media-intro p,.merch-copy p{grid-column:9/13;max-width:none;font-size:clamp(17px,1.45vw,23px);line-height:1.5;font-weight:500;font-variation-settings:"wght" 500;margin:4px 0 0}.merch-copy .eyebrow{grid-column:1/13;margin-bottom:8px}.chapter-label,.hero-top,.idea-bottom,.social-bottom,.match-top,.match-copy,.sport-note,.closing-bottom,footer{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}.chapter-label>*:first-child,.hero-top>*:first-child,.idea-bottom>*:first-child,.social-bottom>*:first-child,.match-top>*:first-child,.match-copy>*:first-child,.sport-note>*:first-child,.closing-bottom>*:first-child,footer>*:first-child{grid-column:1/8}.chapter-label>*:last-child,.hero-top>*:last-child,.idea-bottom>*:last-child,.social-bottom>*:last-child,.match-top>*:last-child,.match-copy>*:last-child,.sport-note>*:last-child,.closing-bottom>*:last-child,footer>*:last-child{grid-column:9/13}.chapter-label>*:last-child,.hero-top>*:last-child,.social-bottom>*:last-child,.match-top>*:last-child,.sport-note>*:last-child,footer>*:last-child{text-align:right}.idea-bottom p{font-size:clamp(19px,2vw,29px);font-variation-settings:"wght" 500}.logo-study{margin-top:0}.ball-break{grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap)}.ball-break>div{grid-column:1/7}.ball-break>img{grid-column:8/13}.ball-break h3{font-size:clamp(45px,5.9vw,96px)}.closing-line{padding-top:72px}.closing-bottom nav{grid-template-columns:1fr;gap:16px}.full-media figcaption{font-variation-settings:"wght" 500}.sport-title{font-size:17vw}.social-art{outline:1px solid #1112}.merch-copy{position:relative;width:auto;height:auto}
+@media(max-width:900px){.intro,.identity-heading,.media-intro,.merch-copy{grid-template-columns:repeat(6,minmax(0,1fr));padding-top:50px;padding-bottom:55px}.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2{grid-column:1/7}.intro p,.identity-heading p,.media-intro p,.merch-copy p{grid-column:1/6;max-width:540px}.merch-copy .eyebrow{grid-column:1/7}.hero-top>*:last-child{grid-column:8/13}.sport-title{font-size:18vw}.closing-bottom nav{grid-column:8/13}.ball-break h3{font-size:6vw}}
+@media(max-width:600px){:host{--pad:24px;--gap:16px}.intro,.identity-heading,.media-intro,.merch-copy{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:40px;padding-bottom:45px;row-gap:27px}.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2,.intro p,.identity-heading p,.media-intro p,.merch-copy p,.merch-copy .eyebrow{grid-column:1/5}.intro p,.identity-heading p,.media-intro p,.merch-copy p{font-size:18px;line-height:1.5;margin:0}.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2{font-size:46px}.chapter-label,.hero-top,.idea-bottom,.social-bottom,.match-top,.match-copy,.sport-note,.closing-bottom,footer{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.chapter-label>*:first-child,.hero-top>*:first-child,.idea-bottom>*:first-child,.social-bottom>*:first-child,.match-top>*:first-child,.match-copy>*:first-child,.sport-note>*:first-child,.closing-bottom>*:first-child,footer>*:first-child{grid-column:1/5}.chapter-label>*:last-child,.hero-top>*:last-child,.idea-bottom>*:last-child,.social-bottom>*:last-child,.match-top>*:last-child,.match-copy>*:last-child,.sport-note>*:last-child,.closing-bottom>*:last-child,footer>*:last-child{grid-column:1/5;text-align:left}.idea-bottom p{margin-top:0}.sport-scene{height:auto;max-height:none;min-height:0;display:flex;flex-direction:column}.sport-title{position:relative;left:auto;top:auto;width:auto;margin:24px var(--pad) 0;font-size:25vw}.sport-person{position:relative;right:auto;bottom:auto;top:auto;width:85%;height:460px;margin:20px auto 0;object-fit:contain;object-position:bottom}.sport-glow{top:0;height:340px;width:120%;left:-10%}.ball-break{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.ball-break>div,.ball-break>img{grid-column:1/5}.ball-break h3{font-size:50px}.brand-ball{width:85%;margin:auto}.closing-bottom nav{grid-column:1/5;margin-top:10px}.closing-line{font-size:13vw}.closing-mark{margin-top:20px}.social-bottom span:last-child{display:none}.match-copy{bottom:24px}.merch-copy .eyebrow{font-size:9px}}
+.hero-top,.hero-bottom{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}.hero-bottom>div{grid-column:1/8}.hero-bottom>a{grid-column:9/13;justify-self:end}.hero-logo{left:var(--pad)}.sport-scene{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);padding:50px var(--pad) 0;height:auto;min-height:0;max-height:none;align-items:end}.sport-title{position:relative;grid-column:1/8;left:auto;top:auto;font-size:16vw;margin-bottom:50px}.sport-person{position:relative;grid-column:8/13;right:auto;bottom:auto;top:auto;width:100%;height:58vw;max-height:850px;object-fit:contain;object-position:bottom}.sport-glow{top:5%;width:70%;height:80%;left:-5%}.sport-lines{pointer-events:none}.social-art .r5c-bet{opacity:.16}.social-art-2 .pc-badge,.social-art-2 .pc-badge-rot img{filter:brightness(0)}
+@media(max-width:600px){.hero-top{display:block}.hero-bottom{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.hero-bottom>div{grid-column:1/4}.hero-bottom>a{grid-column:4/5}.hero-logo{left:5%}.sport-scene{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:25px;padding-top:25px}.sport-title{grid-column:1/5;font-size:25vw;margin:0}.sport-person{grid-column:1/5;width:85%;height:430px;margin:0 auto}.sport-glow{top:0;height:350px;left:-10%;width:120%}.merch-copy p{max-width:none}.closing-line{font-size:13vw}}
+.social-swipe{display:none}@media(max-width:600px){.social-swipe{display:block!important;font-size:10px;margin-top:3px}.social-bottom{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));row-gap:8px}.social-bottom>*{grid-column:1/5}.social-bottom>span:last-child{display:none}.hero-bottom .scroll-link{font-variation-settings:"wght" 500}}
+
+/* ——— Подача BetRush: жёлтый/чёрный/бирюзовый спортбук ——— */
+.proto.betrush {
+  display: flex; flex-direction: column; gap: clamp(10px, 1.2vw, 18px);
+  margin-top: 0; padding: 0; background: none; border-radius: 0;
+  font-family: "DM Sans", "Open Sans", Arial, sans-serif;
+}
+.betrush .rf {
+  position: relative; overflow: hidden; container-type: inline-size; aspect-ratio: 1920/1080; width: 100%;
+  background: #ffe946; color: #111; user-select: none; -webkit-user-select: none; --mx: 0; --my: 0;
+  box-shadow: 0 0 1.2cqw .2cqw rgba(0, 235, 234, 0);
+  transition: box-shadow 1.2s .3s ease;
+}
+/* тот же пульсирующий бирюзовый ободок, что у карточек ленты — теперь на каждом слайде подачи, включая первый (обложку) */
+.betrush .rf.is-in { box-shadow: 0 0 1.2cqw .2cqw rgba(0, 235, 234, .5); animation: rc-cell-glow 5s ease-in-out infinite; }
+.betrush .rf > * { position: absolute; }
+.betrush .rf img { display: block; max-width: none; pointer-events: none; }
+.betrush .rimg.is-photo { width: 100%; height: 100%; object-fit: cover; left: 0; top: 0; }
+
+.is-breathe { animation: br-breathe 6s ease-in-out infinite; }
+.is-sway { animation: br-sway 6s ease-in-out infinite; transform-origin: 50% 55%; }
+@keyframes br-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.06; } }
+@keyframes br-sway { 0%, 100% { rotate: -1.4deg; } 50% { rotate: 1.4deg; } }
+.is-pan { animation: br-pan 14s ease-in-out infinite alternate; }
+@keyframes br-pan { from { transform: scale(1.14) translateX(-2.5%) rotate(-.6deg); } to { transform: scale(1.14) translateX(2.5%) rotate(.6deg); } }
+
+/* 0, 1 — обложка и слоган: линии прорисовываются, свечение дышит и ведёт за курсором */
+.b0 .bc-glow, .b1 .bc-glow {
+  background: radial-gradient(ellipse at center, #22e4c9 0%, #5ef0df 38%, rgba(94, 240, 223, .4) 62%, rgba(94, 240, 223, 0) 80%);
+  filter: blur(1.8cqw);
+  translate: calc(var(--mx) * 2.4cqw) calc(var(--my) * 1.6cqw);
+  transition: translate .5s cubic-bezier(.2, .9, .25, 1);
+  animation: bc-glow-pulse 5s ease-in-out infinite;
+}
+@keyframes bc-glow-pulse { 0%, 100% { opacity: .82; scale: 1; } 50% { opacity: 1; scale: 1.16; } }
+/* Линии — полный рисунок всегда виден (никакой маски, которая срезала бы половину штрихов), только мягкое появление + лёгкая жизнь + курсор */
+.b0 .bc-lines, .b1 .bc-lines {
+  opacity: 0;
+  translate: calc(var(--mx) * -1cqw) calc(var(--my) * -.7cqw);
+  transition: translate .6s cubic-bezier(.2, .9, .25, 1), opacity 1.1s .15s ease;
+}
+.b0.is-in .bc-lines, .b1.is-in .bc-lines {
+  opacity: 1;
+  animation: bc-lines-life 7s 1.6s ease-in-out infinite;
+}
+@keyframes bc-lines-life { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+.b0 .bc-word { position: absolute; inset: 0; }
+.b0 .bc-letter {
+  position: absolute; object-fit: contain;
+  opacity: 0; transform: translateY(55%) rotate(6deg) scale(.82);
+  transition: opacity .6s calc(.1s + var(--i) * 65ms), transform .85s calc(.1s + var(--i) * 65ms) cubic-bezier(.3, 1.6, .4, 1);
+}
+.b0.is-in .bc-letter { opacity: 1; transform: none; }
+.b0.is-in .bc-letter {
+  animation: bc-letter-breathe 3.6s ease-in-out infinite;
+  animation-delay: calc(1s + var(--i) * .12s);
+}
+@keyframes bc-letter-breathe { 0%, 100% { scale: 1; rotate: 0deg; } 50% { scale: 1.06; rotate: -1.2deg; } }
+
+/* 1 — слоган: каждая буква своя картинка (кривые Figma-векторы), разлетается по отдельности как на обложке */
+.b1 .bc-tagletter {
+  position: absolute; object-fit: contain;
+  opacity: 0; transform: translateY(55%) rotate(5deg) scale(.85);
+  transition: opacity .6s calc(.1s + var(--i) * 55ms), transform .8s calc(.1s + var(--i) * 55ms) cubic-bezier(.3, 1.6, .4, 1);
+}
+.b1.is-in .bc-tagletter { opacity: 1; transform: none; }
+.b1.is-in .bc-tagletter {
+  animation: bc-letter-breathe 3.6s ease-in-out infinite;
+  animation-delay: calc(1s + var(--i) * .1s);
+}
+
+.tc { position: relative; width: 100%; height: 100%; container-type: inline-size; background: #ffe946; overflow: hidden; }
+.tc > * { position: absolute; }
+.tc-lines {
+  opacity: 0;
+  transition: opacity 1.1s .15s ease;
+}
+.b2.is-in .tc-lines {
+  opacity: 1;
+  animation: bc-lines-life 7s 1.8s ease-in-out infinite;
+}
+.tc-glow {
+  background: radial-gradient(ellipse at center, #22e4c9 0%, #5ef0df 40%, rgba(94, 240, 223, .35) 65%, rgba(94, 240, 223, 0) 82%);
+  filter: blur(1.4cqw);
+  animation: bc-glow-pulse 5s ease-in-out infinite;
+}
+.tc-glow-bottom { animation-delay: -1.4s; }
+.tc-photo { width: 100%; height: 100%; object-fit: cover; }
+.tc-photo.is-zoom { animation: br-kb 9s ease-in-out infinite alternate; }
+.tc-overlay { opacity: 0; transition: opacity 1s .5s ease; }
+.b2.is-in .tc-overlay { opacity: 1; }
+.tc-lines2 { transition-delay: .4s; }
+.b2.is-in .tc-lines2 { animation-delay: 2.2s; }
+@keyframes br-kb { from { transform: scale(1); } to { transform: scale(1.1); } }
+.tc-bgtitle { object-fit: contain; width: 100%; height: 100%; opacity: .92; }
+.fb-glowwrap { opacity: 0; transition: opacity 1s .2s ease; }
+.b2.is-in .fb-glowwrap { opacity: 1; animation: bc-glow-pulse 5s ease-in-out infinite; }
+.fb-glowwrap img { position: static; width: 100%; height: 100%; display: block; }
+.fb-swirl { opacity: 0; transition: opacity .8s .6s ease; }
+.b2.is-in .fb-swirl { opacity: 1; animation: fb-swirl-spin 24s linear infinite; }
+.fb-swirl img { position: static; width: 100%; height: 100%; display: block; }
+@keyframes fb-swirl-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.fb-ball { opacity: 0; transform: scale(.6); transition: opacity .7s .9s ease, transform .9s .9s cubic-bezier(.3, 1.4, .4, 1); }
+.b2.is-in .fb-ball { opacity: 1; transform: scale(1); animation: tc-part-life 4.2s 1.8s ease-in-out infinite; }
+
+/* каждый декомпозированный элемент карточки — собственный word-reveal слой, въезжает со своим сдвигом */
+.tc-part { display: block; overflow: hidden; }
+.tc-part .rw { display: block; width: 100%; height: 100%; clip-path: inset(-40% -25% -14% -25%); }
+.tc-part .rwi {
+  display: block; width: 100%; height: 100%; transform: translateY(115%);
+  transition: transform .85s cubic-bezier(.2, .9, .25, 1); transition-delay: calc(.1s + var(--i) * 70ms);
+}
+.tc-part .rwi img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.b2.is-in .tc-part .rwi { transform: none; }
+.b2.is-in .tc-part {
+  animation: tc-part-life 4.2s ease-in-out infinite;
+  animation-delay: calc(1s + var(--i) * .1s);
+}
+@keyframes tc-part-life { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+
+/* 3 — баннер RUUUSH! (Rush8): реальные слои из Figma на подлинных местах — повёрнутые линии, эхо-вордмарк,
+   фото, крупное лого, дисклеймер+18 одной картинкой, блок «IN BET WE TRUST» со своим свечением */
+.b3.is-banner { aspect-ratio: 1920/678.21; background: #ffe946; }
+.bn-lines { opacity: 0; transform: rotate(2.84deg); transition: opacity 1.1s .15s ease; }
+.b3.is-in .bn-lines { opacity: 1; animation: bc-lines-life 7s 1.8s ease-in-out infinite; }
+/* полотно RUUUUSH стоит на подлинном Figma-месте неподвижно — никуда не едет */
+.bn-ruuushwrap { opacity: 0; transition: opacity .9s ease; }
+.b3.is-in .bn-ruuushwrap { opacity: 1; }
+/* каждая буква стоит на своём месте и в своём размере; по очереди, волной одна за другой, рывком раздувается
+   во весь экран и тут же рывком садится обратно на своё подлинное место — бесконечно по кругу */
+.bn-rletter { position: absolute; display: block; transform-origin: 50% 50%; }
+.b3.is-in .bn-rletter { animation: bn-rletter-wave 7s steps(6, jump-end) infinite; }
+@keyframes bn-rletter-wave { 0% { transform: scale(1); } 4% { transform: scale(7); } 10%, 100% { transform: scale(1); } }
+.bn-photo {
+  opacity: 0; transform: scale(1.06);
+  translate: calc(var(--mx) * 1.4cqw) calc(var(--my) * 1cqw);
+  transition: opacity 1s .1s ease, transform 1.1s .1s cubic-bezier(.2, .9, .25, 1), translate .5s cubic-bezier(.2, .9, .25, 1);
+}
+.b3.is-in .bn-photo { opacity: 1; transform: scale(1); animation: bn-photo-breathe 5.5s 1.1s ease-in-out infinite; }
+@keyframes bn-photo-breathe { 0%, 100% { scale: 1; rotate: 0deg; } 50% { scale: 1.05; rotate: -1.6deg; } }
+.bn-badge { opacity: 0; transition: opacity .6s 1.3s ease; }
+.b3.is-in .bn-badge { opacity: 1; }
+.bn-glowwrap { opacity: 0; transition: opacity 1.2s .2s ease; }
+.b3.is-in .bn-glowwrap { opacity: 1; animation: bc-glow-pulse 5s ease-in-out infinite; }
+.bn-glowinset { position: absolute; inset: -60.98% -9.77%; }
+.bn-glowinset img { position: static; width: 100%; height: 100%; display: block; }
+.bn-disclaimer { opacity: 0; transition: opacity 1s .4s ease; }
+.b3.is-in .bn-disclaimer { opacity: .9; }
+/* IN BET WE TRUST — 4 слова прилетают каждое со своей стороны (IN слева, BET справа, WE снизу, TRUST справа),
+   держатся на месте и улетают обратно туда же, по кругу бесконечно */
+.bn-trustgroup { position: absolute; inset: 0; }
+.bn-word { opacity: 0; }
+.bn-word img { position: absolute; display: block; }
+.b3.is-in .bn-word { animation: bn-word-cycle-x 6s ease-in-out infinite; }
+.bn-word-left { --fx: -55cqw; }
+.bn-word-right { --fx: 55cqw; }
+.b3.is-in .bn-word-bottom { animation-name: bn-word-cycle-y; }
+.bn-word-bottom { --fy: 30cqw; }
+@keyframes bn-word-cycle-x {
+  0% { opacity: 0; transform: translateX(var(--fx)); }
+  15%, 65% { opacity: 1; transform: translateX(0); }
+  85%, 100% { opacity: 0; transform: translateX(var(--fx)); }
+}
+@keyframes bn-word-cycle-y {
+  0% { opacity: 0; transform: translateY(var(--fy)); }
+  15%, 65% { opacity: 1; transform: translateY(0); }
+  85%, 100% { opacity: 0; transform: translateY(var(--fy)); }
+}
+
+/* 7 — все 6 карточек сторис (Rush5 + Arsenal/FreeBet/PaulJushua) одним полотном-лентой, как блок Roll 5:
+   верхний ряд едет в одну сторону, нижний — навстречу, каждая тройка дублирована для бесшовной прокрутки.
+   Используем те же .rs-row/.rs-track/@keyframes r-roll, что и в proto-roll.css (загружен на той же странице). */
+.b7, .b2 { background: #ffe946; }
+.bmix { aspect-ratio: 1920 / 1000; }
+.bm-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 1.2cqw; padding: 1.2cqw 0; }
+.bm-row { position: relative; height: 47%; overflow: visible; }
+/* тройка карточек у́же экрана и дублирована 4 раза (BM_REPEAT) — сдвиг за цикл ровно 1/4 ленты, а не 1/2,
+   иначе короткий повтор не успевает закрыть собой экран и в шве виден пустой фон */
+.bm-row .rs-track { animation-name: bm-roll; }
+@keyframes bm-roll { from { transform: translateX(calc(-25% - .195cqw)); } to { transform: translateX(0); } }
+.bm-row.is-slow .rs-track { animation-duration: 58s; animation-delay: -20s; animation-direction: reverse; }
+.bm-cell {
+  position: relative; flex: none; height: 100%; aspect-ratio: 595.75 / 744.69;
+  border-radius: .6cqw; overflow: hidden;
+  opacity: 0; box-shadow: 0 0 3cqw .4cqw rgba(0, 235, 234, 0);
+  transition: opacity .8s ease, box-shadow 1.2s .3s ease;
+}
+.bmix.is-in .bm-cell { opacity: 1; box-shadow: 0 0 3cqw .4cqw rgba(0, 235, 234, .55); }
+.bmix.is-in .bm-cell { animation: rc-cell-glow 5s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .2s); }
+@keyframes rc-cell-glow { 0%, 100% { box-shadow: 0 0 3cqw .4cqw rgba(0, 235, 234, .4); } 50% { box-shadow: 0 0 4.5cqw 1cqw rgba(0, 235, 234, .75); } }
+
+.rc { position: relative; width: 100%; height: 100%; container-type: inline-size; background: #ffe946; overflow: hidden; }
+.rc > * { position: absolute; }
+.rc.rc-dark { background: #000; }
+.rc-lines { opacity: 0; transition: opacity 1.1s .15s ease; }
+.b7.is-in .rc-lines { opacity: 1; animation: bc-lines-life 7s 1.8s ease-in-out infinite; }
+
+/* карточка C: гигантский BET-фон — 3 отдельные буквы, каждая флипает по горизонтальной оси по очереди (не разом):
+   сперва B, потом E, потом T, с ровным интервалом по кругу бесконечно. Линии и свечение — как на A/B,
+   буквы «IN BET WE TRUST» увеличиваются вразнобой, каждая по своему циклу */
+.r5c-bet { opacity: 0; transform-style: preserve-3d; transition: opacity 1s .1s ease; }
+.b7.is-in .r5c-bet { opacity: 1; animation: rc-flip-v 6s ease-in-out infinite; }
+.b7.is-in .r5c-bet-b { animation-delay: 0s; }
+.b7.is-in .r5c-bet-e { animation-delay: 2s; }
+.b7.is-in .r5c-bet-t { animation-delay: 4s; }
+.r5c-glow { width: 135.83%; height: 38.22%; }
+.r5c-glowinset { inset: -27.91% -9.82%; }
+.r5c-textwrap { opacity: 0; transition: opacity .8s .9s ease; }
+.b7.is-in .r5c-textwrap { opacity: 1; }
+.wt-letter { position: absolute; display: block; transform-origin: 50% 50%; }
+.b7.is-in .wt-letter { animation-name: wt-letter-grow; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+@keyframes wt-letter-grow { 0%, 100% { transform: scale(1); } 50% { transform: scale(var(--sc, 1.2)); } }
+
+/* карточка B: каждое слово прилетает отдельно рывком — быстро больше, потом меньше, со ступенчатым (не плавным) движением.
+   transform-origin в левом верхнем углу слова (не в центре) — рост идёт вправо-вниз, а не наружу за левый край карточки,
+   иначе у слов возле края (WILL) буква при увеличении вылезала и срезалась рамкой карточки */
+.pc-word { opacity: 0; transform: scale(.3); transform-origin: 0 0; }
+.pc-word img { position: absolute; display: block; }
+/* слова прилетают рывком, держатся, улетают тем же рывком обратно и прилетают снова — бесконечный цикл */
+.b7.is-in .pc-word {
+  opacity: 0;
+  animation: pc-word-cycle 6s calc(var(--i) * .13s) steps(5, jump-end) infinite;
+}
+@keyframes pc-word-cycle {
+  /* масштаб НИКОГДА не превышает 1 — иначе слово у края карточки вылезает за рамку и срезается оверфлоу */
+  0% { opacity: 0; transform: scale(.25); }
+  7% { opacity: 1; transform: scale(1); }
+  13% { transform: scale(.85); }
+  18%, 65% { opacity: 1; transform: scale(1); }
+  72% { transform: scale(.9); }
+  80% { opacity: 1; transform: scale(.25); }
+  86%, 100% { opacity: 0; transform: scale(.25); }
+}
+
+.rc-check {
+  border: .35cqw solid #111; border-radius: .5cqw; background: transparent;
+  opacity: 0; transform: scale(.7);
+}
+/* чекбоксы закрашиваются бирюзовым только когда вся фраза уже долетела (синхронно с pc-word-cycle, те же 18%/65%),
+   мигают пока фраза держится на месте, гаснут вместе с фразой, когда та улетает */
+.b7.is-in .rc-check {
+  animation: rc-check-cycle 6s calc(var(--i) * .2s) steps(1, jump-end) infinite;
+}
+@keyframes rc-check-cycle {
+  0%, 16% { opacity: 0; transform: scale(.7); background-color: transparent; }
+  20% { opacity: 1; transform: scale(1); background-color: #00ebea; }
+  45% { background-color: #00ebea; }
+  50% { background-color: transparent; }
+  55% { background-color: #00ebea; }
+  65% { opacity: 1; transform: scale(1); background-color: #00ebea; }
+  80% { opacity: 1; transform: scale(.7); }
+  86%, 100% { opacity: 0; transform: scale(.7); background-color: transparent; }
+}
+.rc-yes { object-fit: contain; opacity: 0; transition: opacity .6s 1.7s; }
+.b7.is-in .rc-yes { opacity: 1; }
+
+/* 4 маленьких логотипа неподвижны по углам; TL/BR — как есть, TR/BL — повёрнуты на 90° (проверено по реальным
+   скриншотам узлов из Figma: в этих двух углах бейдж действительно развёрнут, в разные стороны) */
+.pc-badge {
+  object-fit: contain; opacity: 0;
+  transition: opacity .6s 1.4s ease;
+}
+.b7.is-in .pc-badge, .b2.is-in .pc-badge { opacity: 1; }
+.pc-badge-rot { opacity: 0; transition: opacity .6s 1.4s ease; overflow: visible; }
+.b7.is-in .pc-badge-rot, .b2.is-in .pc-badge-rot { opacity: 1; }
+.pc-badge-rot img {
+  position: absolute; left: 50%; top: 50%;
+  width: 175.46%; height: 57.01%; object-fit: contain;
+}
+.pc-rot-ccw img { transform: translate(-50%, -50%) rotate(-90deg); }
+.pc-rot-cw img { transform: translate(-50%, -50%) rotate(90deg); }
+
+/* карточка A: 8 строк тикера едут непрерывно влево/вправо построчно, свечение лежит ПОВЕРХ них, лого (BET/RUSH) — ещё выше и крутится флипом */
+.rc.rc-dark { perspective: 70cqw; }
+/* линии остаются чёрными (как в макете) и дорисовываются по диагонали при появлении карточки */
+.rc-lines { clip-path: polygon(0% 0%, 0% 0%, 0% 0%); }
+.b7.is-in .rc-lines {
+  animation: rc-lines-draw 1.6s .25s cubic-bezier(.3, .8, .25, 1) both, bc-lines-life 7s 1.9s ease-in-out infinite;
+}
+@keyframes rc-lines-draw {
+  from { clip-path: polygon(0% 0%, 0% 0%, 0% 0%); }
+  to { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+}
+.rc-tickwrap { position: absolute; inset: 0; overflow: hidden; }
+.rc-tickrow {
+  position: absolute; opacity: 0;
+  transition: opacity .6s calc(var(--i, 0) * .06s);
+}
+.rc-tickrow:nth-child(1) { --i: 0; } .rc-tickrow:nth-child(2) { --i: 1; } .rc-tickrow:nth-child(3) { --i: 2; } .rc-tickrow:nth-child(4) { --i: 3; }
+.rc-tickrow:nth-child(5) { --i: 4; } .rc-tickrow:nth-child(6) { --i: 5; } .rc-tickrow:nth-child(7) { --i: 6; } .rc-tickrow:nth-child(8) { --i: 7; }
+.rc-tickrow img { width: 100%; height: 100%; display: block; }
+.b7.is-in .rc-tickrow { opacity: 1; }
+/* чётные и нечётные строки едут в противоположных направлениях — классическая разнонаправленная лента */
+.b7.is-in .rc-tick-l { animation: rc-tick-left 14s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .25s); }
+.b7.is-in .rc-tick-r { animation: rc-tick-right 14s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .25s); }
+@keyframes rc-tick-left { 0%, 100% { transform: translateX(-6%); } 50% { transform: translateX(6%); } }
+@keyframes rc-tick-right { 0%, 100% { transform: translateX(6%); } 50% { transform: translateX(-6%); } }
+
+.rc-glowwrap {
+  left: 50%; top: calc(50% + .04%); width: 135.834%; height: 56.667%;
+  transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity 1.2s .2s ease;
+}
+.b7.is-in .rc-glowwrap { opacity: 1; animation: bc-glow-pulse 5s ease-in-out infinite; }
+.rc-glowinset { position: absolute; inset: -18.82% -9.82%; }
+.pc-glow { top: calc(40% + .04%); }
+.rc-glowimg { position: static; width: 100%; height: 100%; display: block; }
+
+/* BET — флип по вертикали (вокруг горизонтальной оси), RUSH — флип по горизонтали (вокруг вертикальной оси), оба в чёрном, поверх свечения */
+.rc-flip { transform-style: preserve-3d; opacity: 0; transition: opacity .7s .3s ease; }
+.rc-flip > * { position: absolute; }
+.b7.is-in .rc-flip { opacity: 1; }
+.b7.is-in .rc-flip-v { animation: rc-flip-v 7s ease-in-out infinite; animation-delay: .4s; }
+.b7.is-in .rc-flip-h { animation: rc-flip-h 7s ease-in-out infinite; animation-delay: .7s; }
+@keyframes rc-flip-v { 0%, 38% { transform: rotateX(0deg); } 50% { transform: rotateX(180deg); } 62%, 100% { transform: rotateX(360deg); } }
+@keyframes rc-flip-h { 0%, 38% { transform: rotateY(0deg); } 50% { transform: rotateY(180deg); } 62%, 100% { transform: rotateY(360deg); } }
+
+/* Живая обложка в сетке на главной и на превью-ссылках ("Next project" и т.п.) — тот же логотип BETRUSH, зациклено навсегда */
+.bco {
+  position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden;
+  background: #ffe946; container-type: size;
+}
+.bco-glow {
+  position: absolute; left: 50%; top: 50%; width: 85cqw; height: 85cqh; translate: -50% -50%;
+  background: radial-gradient(ellipse at center, #22e4c9 0%, #5ef0df 40%, rgba(94, 240, 223, 0) 78%);
+  filter: blur(3cqw);
+  animation: bco-glow-pulse 4s ease-in-out infinite;
+}
+@keyframes bco-glow-pulse { 0%, 100% { opacity: .85; scale: 1; } 50% { opacity: 1; scale: 1.12; } }
+.bco-lines {
+  position: absolute; left: 50%; top: 50%; width: 220cqw; height: 220cqh; translate: -50% -50%;
+  object-fit: contain; opacity: .9;
+  animation: bco-lines-spin 22s linear infinite;
+}
+@keyframes bco-lines-spin { to { transform: rotate(360deg); } }
+.bco-logo { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2cqh; width: 72cqw; }
+.bco-row { display: flex; align-items: flex-end; justify-content: center; gap: 1.5cqw; width: 100%; }
+.bcl {
+  position: static; display: block; height: 15cqh; width: auto; object-fit: contain;
+  opacity: 0; transform: translateY(70%);
+  animation: bco-rise .7s calc(var(--i) * .07s) cubic-bezier(.3, 1.6, .4, 1) both,
+             bco-breathe 3.2s calc(1.4s + var(--i) * .1s) ease-in-out infinite;
+}
+@keyframes bco-rise { to { opacity: 1; transform: none; } }
+@keyframes bco-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.08; } }
+@media (prefers-reduced-motion: reduce) { .bco * { animation: none !important; } }
+
+.proto.betrush.no-anim *, .no-anim .betrush * { animation: none !important; transition: none !important; }
+
+.social-reel{padding:0!important;width:100%;overflow:hidden;background:#ffe946}
+.social-reel .rs-row{overflow:visible}
+.social-reel .rs-track{display:flex;gap:.78cqw;width:max-content;height:100%;animation:bm-roll 46s linear infinite}
+.social-reel .rs-row.is-slow .rs-track{animation-duration:58s;animation-delay:-20s;animation-direction:reverse}
+.social-reel .rc-tickrow img,.social-reel .r5c-bet{filter:none;opacity:1}
+.social-reel .rf,.social-reel .rf *{animation-play-state:paused!important}
+.social-reel.is-live .rf,.social-reel.is-live .rf *{animation-play-state:running!important}
+:host(.motion-off) .social-reel *{animation:none!important;transition:none!important}
+:host(.motion-off) .social-reel .pc-word,:host(.motion-off) .social-reel .rc-check{opacity:1;transform:none}
+:host(.motion-off) .social-reel .rc-check{background:#00ebea}
+@media(max-width:600px){.social-reel .rf{aspect-ratio:auto;height:650px}.social-reel .bm-wrap{gap:20px;padding:22px 0}.social-reel .bm-row{height:47%}.social-reel .bm-cell{border-radius:5px}.social-reel .rs-track{gap:12px}}
+@media(prefers-reduced-motion:reduce){.social-reel *{animation:none!important;transition:none!important}.social-reel .pc-word,.social-reel .rc-check{opacity:1;transform:none}.social-reel .rc-check{background:#00ebea}}
+
+/* Continuous presentation: soft transitions, contained linework and quiet motion. */
+.line-field{position:absolute;inset:0;pointer-events:none;overflow:hidden;mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 70%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 70%,transparent 100%)}
+.line-field img{mask-image:radial-gradient(ellipse at center,#000 30%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 72%)}
+.hero .line-field{z-index:0}.trust-scene{isolation:isolate}.trust-scene .line-field{z-index:0;inset:-12% 0}.trust-type{position:absolute;z-index:2}.trust-lines{top:-105%;height:310%}
+.sport-scene{position:relative;isolation:isolate;overflow:hidden}.sport-scene .line-field{z-index:-1}.sport-lines{height:220%;top:-65%}
+.chapter-label,.hero-bottom,.logo-study,footer{border-image:linear-gradient(90deg,transparent,#111 18%,#111 82%,transparent) 1}
+.logo-study{border-bottom:0;margin-bottom:40px}
+.palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);height:auto;margin:0 var(--pad);padding:0 0 88px}
+.palette>div{position:relative;width:auto;min-height:76px;padding:32px 0 0;border:0;display:flex;flex-direction:row;justify-content:space-between;align-items:center;background:transparent;color:#111}
+.palette>div:before{content:"";position:absolute;top:0;left:0;right:0;height:14px;background:#ffe946;border:1px solid #111}
+.palette-black:before{background:#111!important;border-color:#111}.palette-teal:before{background:#00ebea!important;border-color:#00ebea}
+.ball-break>.ball-art{grid-column:8/13;position:relative;isolation:isolate;width:100%;aspect-ratio:1;display:grid;place-items:center}
+.ball-glow{position:absolute;width:150%;max-width:none;height:150%;inset:-25%;object-fit:fill;z-index:-1;pointer-events:none}
+.ball-art .brand-ball{width:100%;margin:0;animation:presentation-ball-breathe 7s ease-in-out infinite,presentation-ball-turn 110s linear infinite;animation-play-state:paused;transform-origin:center}
+.ball-art.is-live .brand-ball{animation-play-state:running}
+@keyframes presentation-ball-breathe{0%,100%{scale:1}50%{scale:1.025}}
+@keyframes presentation-ball-turn{from{rotate:-4deg}to{rotate:356deg}}
+:host(.motion-off) .ball-art .brand-ball{animation:none;scale:1;rotate:0deg}
+.hero-player,.sport-person{mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%)}
+.full-media>img,.merch-photo{mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 80%,transparent 100%)}
+.closing-bottom>p{grid-column:1/13!important}
+@media(max-width:600px){.palette{grid-template-columns:1fr;padding-bottom:45px;gap:16px}.palette>div{min-height:58px}.ball-break>.ball-art{grid-column:1/5;width:85%;margin:10px auto 20px}.ball-glow{width:140%;height:140%;inset:-20%}}
+@media(prefers-reduced-motion:reduce){.ball-art .brand-ball{animation:none}}
+
+footer .back-top-arrow{display:block;justify-self:end;font-size:clamp(72px,7vw,120px);line-height:1;font-weight:500;font-variation-settings:"wght" 500;text-decoration:none;padding:0 12px;transition:transform .25s ease}footer .back-top-arrow:hover{transform:translateY(-6px)}footer{align-items:center}@media(max-width:600px){footer .back-top-arrow{grid-column:4/5;grid-row:1;font-size:80px}footer>span:first-child{grid-column:1/4}}@media(prefers-reduced-motion:reduce){footer .back-top-arrow{transition:none}}
+
+/* MOTION toggle hidden by request; keeps its slot so the top bar layout is unchanged */
+.nav-right{display:none}
+
+:host{--nav-height:74px;--grid-columns:12;--baseline:24px}.nav{height:calc(var(--nav-height) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+@media(max-width:900px){:host{--nav-height:64px;--grid-columns:6}.nav button{min-height:44px}.nav-logo{min-height:44px}.full-media>img{min-height:0}.chapter-label{overflow-wrap:anywhere}}
+@media(max-width:600px){:host{--grid-columns:4;--pad:clamp(18px,6vw,24px);--gap:clamp(12px,4vw,16px)}
+.hero{height:100svh;min-height:560px;max-height:none;padding:calc(var(--nav-height) + env(safe-area-inset-top,0px) + 18px) var(--pad) calc(44px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto minmax(0,1fr) auto;column-gap:var(--gap);row-gap:16px;isolation:isolate}
+.hero-top{grid-column:1/5;grid-row:1;margin:0;font-size:9px;line-height:1.4}
+.hero-logo{position:relative;grid-column:1/5;grid-row:2;left:auto;top:auto;width:min(100%,49svh);margin:0;align-self:center;justify-self:start;z-index:3}
+.hero-player{position:relative;grid-column:2/5;grid-row:3;right:auto;top:auto;width:100%;height:100%;min-height:0;max-height:300px;object-fit:contain;object-position:right center;justify-self:end;align-self:center;transform:none!important;animation:none!important}
+.hero-bottom{position:relative;grid-column:1/5;grid-row:4;bottom:auto;left:auto;right:auto;width:100%;align-items:end;gap:var(--gap);margin:0}.hero-bottom>div{grid-column:1/4}.hero-bottom p{font-size:clamp(18px,5.5vw,24px);line-height:1.16;margin:10px 0 0;max-width:none}.hero-bottom .eyebrow{font-size:8px;line-height:1.5}.hero-bottom>a{grid-column:4/5;max-width:100%;min-height:44px;font-size:7px;gap:8px;line-height:1.4}.scroll-link span{font-size:30px;flex-shrink:0}
+.hero-glow{left:-15%;top:12%;height:43%;width:130%}.sport-person{height:clamp(280px,95vw,430px)}.ball-break h3{font-size:clamp(42px,12.8vw,50px)}.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2{font-size:clamp(36px,11.6vw,46px)}.intro p,.identity-heading p,.media-intro p,.merch-copy p{font-size:clamp(16px,4.6vw,18px)}.sport-note{padding-top:24px;padding-bottom:24px}.closing-bottom{padding-bottom:30px}footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:900px) and (orientation:landscape) and (max-height:600px){.hero{height:100svh;min-height:410px;max-height:none;padding-top:var(--nav-height)}.hero-top{margin-top:16px;font-size:9px}.hero-logo{width:44%;left:var(--pad);top:28%;margin:0}.hero-player{width:42%;height:62%;right:var(--pad);top:21%;object-fit:contain;transform:none!important}.hero-bottom{bottom:calc(30px + env(safe-area-inset-bottom,0px))}.hero-bottom p{font-size:18px;margin-bottom:0}.hero-bottom .eyebrow{font-size:8px}}
+
+
+
+
+@media(min-width:601px) and (max-width:900px){.chapter-label,.hero-top,.idea-bottom,.social-bottom,.sport-note,.closing-bottom,footer,.hero-bottom,.sport-scene,.ball-break{grid-template-columns:repeat(6,minmax(0,1fr))}.chapter-label>*:first-child,.hero-top>*:first-child,.idea-bottom>*:first-child,.social-bottom>*:first-child,.sport-note>*:first-child,.closing-bottom>*:first-child,footer>*:first-child{grid-column:1/4}.chapter-label>*:last-child,.hero-top>*:last-child,.idea-bottom>*:last-child,.social-bottom>*:last-child,.sport-note>*:last-child,footer>*:last-child{grid-column:5/7}.hero-bottom>div{grid-column:1/5}.hero-bottom>a{grid-column:5/7}.sport-title{grid-column:1/4}.sport-person{grid-column:4/7}.ball-break>div{grid-column:1/4}.ball-break>.ball-art{grid-column:4/7}}
+@media(max-width:900px) and (orientation:landscape) and (max-height:600px){.hero{min-height:360px}.hero-logo{width:min(42%,68svh)}.hero-player{animation:none!important}.hero-bottom{bottom:calc(40px + env(safe-area-inset-bottom,0px))}}
+
+
+/* BetRush: one responsive grid, fixed type roles and an 8px baseline unit. */
+:host{--grid-columns:12;--pad:64px;--gap:24px;--baseline:8px;--module:48px;--nav-height:72px;--title-size:96px;--title-leading:96px;--closing-size:112px;--closing-leading:112px;--sub-size:48px;--sub-leading:48px;--copy-size:32px;--copy-leading:40px;--body-size:18px;--body-leading:24px;--caption-size:14px;--caption-leading:16px;--intro-space:64px;--section-space:96px}
+@media(min-width:601px) and (max-width:1023px){:host{--grid-columns:6;--pad:32px;--title-size:72px;--title-leading:72px;--closing-size:80px;--closing-leading:80px;--sub-size:40px;--sub-leading:40px;--copy-size:24px;--copy-leading:32px;--caption-size:12px;--intro-space:48px}}
+@media(max-width:600px){:host{--grid-columns:4;--pad:24px;--gap:16px;--title-size:48px;--title-leading:48px;--closing-size:64px;--closing-leading:64px;--sub-size:32px;--sub-leading:32px;--copy-size:24px;--copy-leading:32px;--body-size:16px;--caption-size:12px;--intro-space:32px;--section-space:64px}}
+:host{font-weight:500;font-variation-settings:"wght" 500}.nav{height:calc(72px + env(safe-area-inset-top,0px))}.nav-caption,.nav-right,.nav button{font-size:12px;line-height:16px}
+.type-title,.type-sub,.type-closing{font-weight:1000;font-variation-settings:"wght" 1000;letter-spacing:-.03em}.type-title{font-size:var(--title-size);line-height:var(--title-leading)}.type-sub{font-size:var(--sub-size);line-height:var(--sub-leading)}.type-closing{font-size:var(--closing-size);line-height:var(--closing-leading)}.type-body{font-size:var(--body-size);line-height:24px;font-weight:500;font-variation-settings:"wght" 500;letter-spacing:0}.type-copy{font-size:var(--copy-size);line-height:var(--copy-leading);font-weight:500;font-variation-settings:"wght" 500;letter-spacing:0}.type-caption{font-size:var(--caption-size);line-height:16px;font-weight:500;font-variation-settings:"wght" 500;letter-spacing:.04em}
+/* Font-specific inset is calibrated once per role, never per individual block. */
+.type-title,.type-sub,.type-closing,.type-body,.type-copy,.type-caption{position:relative;top:auto;display:block;padding-top:var(--type-inset,0px);padding-bottom:var(--type-outset,0px);margin:0}
+.baseline-probe{display:inline-block!important;width:0!important;height:0!important;padding:0!important;margin:0!important;border:0!important;vertical-align:baseline!important;font-size:0!important;line-height:0!important;position:static!important;pointer-events:none}
+.reveal{transform:none!important;translate:0 0}
+:host(.js-motion) .reveal{translate:0 32px;transition:opacity .85s ease,translate .95s cubic-bezier(.16,1,.3,1)}
+:host(.js-motion) .reveal.seen{translate:0 0}
+:host(.motion-off) .reveal{translate:0 0;transition:none}
+@media(prefers-reduced-motion:reduce){:host(.js-motion) .reveal{translate:0 0}}
+.hero,.hero-top,.hero-bottom,.intro,.identity-heading,.media-intro,.merch-copy,.chapter-label,.idea-bottom,.sport-scene,.sport-note,.ball-break,.social-bottom,.closing-bottom,.full-media,.full-media figcaption,.logo-study,.closing-mark{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--gap);row-gap:24px}
+main>section:not(.hero){padding-top:24px;padding-bottom:0}
+.chapter-label{margin:0 var(--pad);padding:24px 0;border:0;position:relative;align-items:first baseline}
+.chapter-label:before,.sport-note:before,.closing-bottom:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,#111 18%,#111 82%,transparent);pointer-events:none}
+.intro,.identity-heading,.media-intro,.merch-copy{padding:var(--intro-space) var(--pad);align-items:start;row-gap:24px}
+.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2{grid-column:1/8}.intro p,.identity-heading p,.media-intro p,.merch-copy p{grid-column:9/13;max-width:60ch;margin:0}.merch-copy .eyebrow{grid-column:1/-1;margin:0}
+.chapter-label>*:first-child,.hero-top>*:first-child,.idea-bottom>*:first-child,.sport-note>*:first-child,.social-bottom>*:first-child{grid-column:1/8}
+.chapter-label>*:last-child,.hero-top>*:last-child,.idea-bottom>*:last-child,.sport-note>*:last-child,.social-bottom>*:last-child{grid-column:9/13}
+.chapter-label>*:last-child,.hero-top>*:last-child,.sport-note>*:last-child,.social-bottom>*:last-child{text-align:right}
+.hero{position:relative;height:auto;min-height:var(--hero-grid-height,100svh);max-height:none;padding:calc(96px + env(safe-area-inset-top,0px)) var(--pad) calc(48px + env(safe-area-inset-bottom,0px));grid-template-rows:auto minmax(320px,1fr) auto;align-items:center;row-gap:24px}
+.hero-top{grid-column:1/-1;grid-row:1;width:100%;margin:0;z-index:4;align-items:first baseline}
+.hero-logo{position:relative;left:auto;top:auto;grid-column:1/8;grid-row:2;width:100%;margin:0;z-index:3;align-self:center}
+.hero-bottom{position:relative;left:auto;right:auto;bottom:auto;grid-column:1/-1;grid-row:3;width:100%;align-items:start;z-index:4;margin:0}.hero-bottom>div{grid-column:1/8}.hero-bottom>a{grid-column:9/13;justify-self:end}.hero-bottom .eyebrow{margin:0}.hero-bottom p{margin:0;max-width:none}.hero-bottom .scroll-link{display:flex;gap:24px;align-items:center;align-self:center;max-width:none;font-size:12px;line-height:16px}.scroll-caption{font-size:12px;line-height:16px;letter-spacing:.04em}
+.hero-player-frame{position:absolute;top:calc(72px + env(safe-area-inset-top,0px));bottom:192px;right:0;width:48%;height:auto;overflow:hidden;z-index:2;mask-image:linear-gradient(to bottom,#000 0%,#000 82%,transparent 100%)}
+.hero-player-frame .hero-player{position:absolute;width:145%;max-width:none;height:auto;max-height:none;right:-40%;left:auto;top:0;translate:none;transform:none!important;animation:none!important;mask-image:none;object-fit:contain}
+.circle-arrow{display:block;width:96px;height:96px;object-fit:contain}.back-top-arrow .circle-arrow{transform:scaleY(-1)}
+.trust-scene{position:relative;margin:24px var(--pad) 0;min-height:0;height:auto;aspect-ratio:2.2}.trust-type{left:0;top:10%;width:100%;height:80%}
+.idea-bottom{margin:0;padding:24px var(--pad) 96px;align-items:first baseline}.idea-bottom p{margin:0}
+.logo-study{margin:0 var(--pad) 48px;padding:24px 0 0;height:auto;border:0;align-items:start}.logo-study .wordmark{grid-column:3/11;width:100%;margin:0}.study-note{position:static;grid-column:9/13;justify-self:start;align-self:start;bottom:auto;right:auto}
+.palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0 var(--pad);padding:0 0 96px;height:auto}.palette>div{display:flex;align-items:first baseline;min-height:0;padding:32px 0 0}
+.sport-scene{position:relative;padding:48px var(--pad) 0;height:auto;min-height:0;max-height:none;align-items:end}.sport-title{position:relative;left:auto;top:auto;grid-column:1/8;grid-row:1;font-size:160px;line-height:128px;margin:0 0 48px}.sport-title>span{display:block}.sport-person{position:relative;grid-column:8/13;grid-row:1;right:auto;bottom:auto;top:auto;width:100%;height:auto;max-height:850px;margin:0;object-fit:contain}
+.sport-note{position:relative;margin:0 var(--pad);padding:24px 0;border:0;align-items:first baseline}.ball-break{padding:64px var(--pad);gap:24px;align-items:center}.ball-break>div:first-child{grid-column:1/7}.ball-break h3{margin:24px 0 0}.ball-break>.ball-art{grid-column:8/13;width:100%;margin:0}
+.social-reel{width:100%;margin:0;padding:0;overflow:hidden}.social-bottom{padding:24px var(--pad) 96px;align-items:first baseline}.social-bottom .social-swipe{display:none}
+.full-media{margin:0;padding:0 var(--pad);width:100%;row-gap:0}.media-image{grid-column:1/-1;padding-bottom:var(--rhythm-tail,0px)}.media-image>img{width:100%;height:auto;min-height:0;display:block;mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 80%,transparent 100%)}.full-media figcaption{grid-column:1/-1;padding:24px 0 48px;align-items:first baseline}.full-media figcaption>*:first-child{grid-column:1/8}.full-media figcaption>*:last-child{grid-column:9/13;text-align:right}
+.merch-scene{height:auto;min-height:0;margin-top:48px}.merch-copy{position:relative;width:auto;height:auto}.merch-photo{position:relative;right:auto;top:auto;bottom:auto;width:calc(100% - 2 * var(--pad));height:auto;max-width:none;margin:0 var(--pad)}
+.closing-line{margin:0;padding-left:var(--pad);padding-right:var(--pad);text-align:left}.closing{padding-top:24px!important}.closing-line.type-closing{margin:64px 0 48px}.closing-mark{width:auto;margin:0 var(--pad) 96px}.closing-mark>.wordmark{grid-column:3/11;width:100%;margin:0}.closing-bottom{margin:0 var(--pad);padding:24px 0 72px;border:0;align-items:start}.closing-bottom>p{grid-column:1/8!important}.closing-bottom .back-top-arrow{grid-column:9/13;justify-self:end;display:block;line-height:0;padding:0}
+[data-rhythm]{padding-bottom:calc(var(--rhythm-space,0px) + var(--rhythm-tail,0px))}.logo-study{--rhythm-space:0px}.sport-scene{--rhythm-space:0px}.ball-break{--rhythm-space:64px}.merch-scene{--rhythm-space:0px}.trust-scene,.social-reel,.closing-mark{--rhythm-space:0px}
+
+@media(min-width:601px) and (max-width:1023px){.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2{grid-column:1/7}.intro p,.identity-heading p,.media-intro p,.merch-copy p{grid-column:1/6}.chapter-label>*:first-child,.hero-top>*:first-child,.idea-bottom>*:first-child,.sport-note>*:first-child,.social-bottom>*:first-child{grid-column:1/4}.chapter-label>*:last-child,.hero-top>*:last-child,.idea-bottom>*:last-child,.sport-note>*:last-child,.social-bottom>*:last-child{grid-column:5/7}.hero-logo{grid-column:1/5}.hero-bottom>div{grid-column:1/5}.hero-bottom>a{grid-column:5/7}.hero-player-frame{width:45%;bottom:168px}.hero-player-frame .hero-player{width:180%;right:-65%}.logo-study .wordmark,.closing-mark>.wordmark{grid-column:2/6}.study-note{grid-column:5/7}.sport-title{grid-column:1/4;font-size:104px;line-height:88px}.sport-person{grid-column:4/7}.ball-break>div:first-child{grid-column:1/4}.ball-break>.ball-art{grid-column:4/7}.full-media figcaption>*:first-child{grid-column:1/5}.full-media figcaption>*:last-child{grid-column:5/7}.closing-bottom>p{grid-column:1/5!important}.closing-bottom .back-top-arrow{grid-column:5/7}}
+@media(max-width:600px){.intro h2,.identity-heading h2,.media-intro h2,.merch-copy h2,.intro p,.identity-heading p,.media-intro p,.merch-copy p{grid-column:1/5;max-width:none}.chapter-label>*:first-child,.hero-top>*:first-child,.idea-bottom>*:first-child,.sport-note>*:first-child,.social-bottom>*:first-child{grid-column:1/5}.chapter-label>*:last-child,.hero-top>*:last-child,.idea-bottom>*:last-child,.sport-note>*:last-child,.social-bottom>*:last-child{grid-column:1/5;text-align:left}.chapter-label>*:last-child,.hero-top>*:last-child{display:none}.hero{grid-template-rows:auto auto minmax(64px,1fr) auto;min-height:max(640px,var(--hero-grid-height,100svh));padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))}.hero-logo{grid-column:1/5;grid-row:2;width:100%;max-width:none}.hero-bottom{grid-row:4}.hero-bottom>div{grid-column:1/4}.hero-bottom>a{grid-column:4/5;align-self:start}.hero-bottom .scroll-caption{display:none}.hero-bottom .circle-arrow,.back-top-arrow .circle-arrow{width:64px;height:64px}.hero-player-frame{width:78%;bottom:192px}.hero-player-frame .hero-player{width:160%;right:-65%}.hero-glow{top:12%;left:-15%;width:130%;height:43%}.trust-scene{aspect-ratio:1.5;margin-top:0}.idea-bottom{padding-bottom:64px;align-items:start}.logo-study{padding-top:0}.logo-study .wordmark,.closing-mark>.wordmark,.study-note{grid-column:1/5}.palette{grid-template-columns:1fr;gap:24px;padding-bottom:64px}.sport-scene{padding-top:32px;row-gap:32px}.sport-title{grid-column:1/5;grid-row:1;font-size:80px;line-height:64px;margin:0}.sport-person{grid-column:1/5;grid-row:2;width:100%;height:auto;max-height:none}.ball-break{padding:48px var(--pad);--rhythm-space:48px}.ball-break>div:first-child,.ball-break>.ball-art{grid-column:1/5}.social-bottom{padding-bottom:64px}.social-bottom .social-swipe{display:block}.social-bottom>span:last-child{display:none}.full-media figcaption{row-gap:16px}.full-media figcaption>*:first-child,.full-media figcaption>*:last-child{grid-column:1/5;text-align:left}.merch-scene{margin-top:32px}.closing-line.type-closing{margin-top:32px;margin-bottom:32px}.closing-mark{margin-bottom:64px}.closing-bottom{padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))}.closing-bottom>p{grid-column:1/4!important;grid-row:1}.closing-bottom .back-top-arrow{grid-column:4/5;grid-row:1}}
+/* Role tokens win over the original presentation's responsive type rules. */
+main .type-title{font-size:var(--title-size);line-height:var(--title-leading);letter-spacing:-.03em}main .type-sub{font-size:var(--sub-size);line-height:var(--sub-leading);letter-spacing:-.03em}main .type-closing{font-size:var(--closing-size);line-height:var(--closing-leading);letter-spacing:-.03em}main .type-body{font-size:var(--body-size);line-height:24px;letter-spacing:0}main .type-copy{font-size:var(--copy-size);line-height:var(--copy-leading);letter-spacing:0}main .type-caption{font-size:var(--caption-size);line-height:16px;letter-spacing:.04em}
+
+.rhythm-frame{display:flow-root;padding-bottom:var(--rhythm-tail,0px)}.wordmark-frame{grid-column:3/11;padding-bottom:var(--rhythm-tail,0px)}.wordmark-frame>.wordmark{width:100%;margin:0}.ball-break{align-items:start}.merch-copy h2,.merch-copy .eyebrow{margin:0}.merch-copy{transform:none;right:auto;left:auto;top:auto;bottom:auto}
+@media(min-width:601px) and (max-width:1023px){.wordmark-frame{grid-column:2/6}}@media(max-width:600px){.wordmark-frame{grid-column:1/5}}
+main .type-ui,.hero-bottom .scroll-link .scroll-caption{font-size:12px;line-height:16px;letter-spacing:.04em}.hero-bottom .scroll-link{align-self:start;align-items:flex-start}.hero-bottom .scroll-link .scroll-caption{margin-top:40px}.type-ui{display:block;padding-top:var(--type-inset,0px);padding-bottom:var(--type-outset,0px)}
+@media(min-width:601px) and (max-width:1023px){.hero-bottom .scroll-link .scroll-caption{margin-top:32px}}
+main .type-caption.type-caption{font-size:var(--caption-size);line-height:16px;letter-spacing:.04em}
+.ball-break[data-rhythm]{padding-bottom:calc(var(--rhythm-space) + var(--rhythm-tail,0px))}
+.ball-break{min-height:0}.hero-logo[data-rhythm]{padding-bottom:var(--rhythm-tail,0px)}
+/* Long headings retain their role size by gaining columns on smaller layouts. */
+@media(min-width:601px) and (max-width:1399px){.ball-break>div:first-child{grid-column:1/-1}.ball-break>.ball-art{grid-column:3/-1}}
+@media(max-width:359px){:host{--title-size:44px;--title-leading:48px;--closing-size:56px;--closing-leading:56px}}
+/* Brand statement: a larger display tier, separate from section headings. */
+:host{--brand-size:224px;--brand-leading:184px}.sport-scene{align-items:start}.sport-title{font-size:var(--brand-size);line-height:var(--brand-leading)}.sport-person{align-self:end}.type-brand{display:block;padding-top:var(--type-inset,0px);padding-bottom:var(--type-outset,0px);font-size:inherit;line-height:inherit;font-variation-settings:inherit}
+@media(min-width:1024px) and (max-width:1279px){:host{--brand-size:176px;--brand-leading:144px}}
+@media(min-width:601px) and (max-width:1023px){:host{--brand-size:160px;--brand-leading:128px}.sport-title{grid-column:1/5}.sport-person{grid-column:5/7}}
+@media(min-width:601px) and (max-width:767px){:host{--brand-size:120px;--brand-leading:96px}}
+@media(max-width:600px){:host{--brand-size:144px;--brand-leading:120px}}
+@media(max-width:479px){:host{--brand-size:104px;--brand-leading:88px}}
+@media(max-width:359px){:host{--brand-size:96px;--brand-leading:80px}}
+
+/* Preserve the lower placement of the brand statement. */
+@media(min-width:601px) and (max-width:1023px){.sport-scene{padding-top:96px}}
+@media(max-width:600px){.sport-scene{padding-top:64px}}
+
+/* The player fills the scene without setting its height. */
+@media(min-width:601px){
+.sport-scene{align-items:end}
+.sport-title{margin-bottom:0}
+.sport-person{position:absolute;grid-column:auto;grid-row:auto;right:var(--pad);top:0;bottom:auto;width:auto;height:calc(100% + 288px);max-height:none;max-width:none;object-fit:contain;object-position:top;mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 368px),transparent calc(100% - 288px));-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 368px),transparent calc(100% - 288px))}
+}
+@media(min-width:601px) and (max-width:1023px){.sport-person{height:calc(100% + 96px);right:0;mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 176px),transparent calc(100% - 96px));-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 176px),transparent calc(100% - 96px))}}
+
+/* Separate outdoor applications from merchandise on the shared grid. */
+#offline .merch-scene{position:relative}
+#offline .merch-scene:before{content:"";position:absolute;top:0;left:var(--pad);right:var(--pad);height:1px;background:linear-gradient(90deg,transparent,#111 18%,#111 82%,transparent);pointer-events:none}
+
+/* Bring the bag closer to its introduction; remove the following divider. */
+#offline .merch-copy{padding-bottom:24px}
+#offline .merch-photo{margin-top:-48px}
+#contents>.chapter-label:before{display:none}
+@media(min-width:601px) and (max-width:1023px){#offline .merch-photo{margin-top:-24px}}
+@media(max-width:600px){#offline .merch-photo{margin-top:0}}
+
+
+
+
+
+
+/* Raise and enlarge the player while keeping the scene height unchanged. */
+@media(min-width:1024px){.sport-person{top:-48px;height:calc(100% + 384px);mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 416px),transparent calc(100% - 336px));-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 416px),transparent calc(100% - 336px))}}
+@media(min-width:1024px) and (max-width:1279px){.sport-person{right:0;top:-40px;height:calc(100% + 352px);mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 392px),transparent calc(100% - 312px));-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 392px),transparent calc(100% - 312px))}}
+@media(min-width:601px) and (max-width:1023px){.sport-person{top:-32px;right:-24px;height:calc(100% + 128px);mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 176px),transparent calc(100% - 96px));-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 176px),transparent calc(100% - 96px))}}
+/* Alternate the composition: ball first, statement second. */
+@media(min-width:1400px){.ball-break>.ball-art{grid-column:1/6;grid-row:1}.ball-break>div:first-child{grid-column:7/13;grid-row:1}}
+@media(min-width:1024px) and (max-width:1399px){.ball-break>.ball-art{grid-column:1/11;grid-row:1}.ball-break>div:first-child{grid-column:1/-1;grid-row:2}}
+@media(max-width:1023px){.ball-break>.ball-art{grid-column:1/-1;grid-row:1}.ball-break>div:first-child{grid-column:1/-1;grid-row:2}}
