@@ -134,11 +134,11 @@ h1, h2, h3, p, figure { margin: 0; }
   transition: clip-path .55s var(--ease);
 }
 .preview.on .preview-inner { clip-path: inset(0 0 0 0 round var(--radius)); }
-.preview-inner img {
+.preview-inner > img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   clip-path: inset(100% 0 0 0); scale: 1.25;
 }
-.preview-inner img.show { clip-path: inset(0 0 0 0); scale: 1; transition: clip-path .6s var(--ease), scale 1.1s var(--ease-out); }
+.preview-inner > img.show { clip-path: inset(0 0 0 0); scale: 1; transition: clip-path .6s var(--ease), scale 1.1s var(--ease-out); }
 
 /* \2014 \2014 \2014  Pill switchers (nav, view toggle, logo tabs) \2014 \2014 \2014  */
 .pill {
