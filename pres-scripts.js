@@ -372,3 +372,70 @@ window.CriminalPresentation = (() => {
   }
   return { mount, unmount };
 })();
+/* Скрипты презентации SHOK (app.js + headline-motion.js из макета), переведённые на контейнер:
+   разметка и стили живут в Shadow DOM, поиск элементов идёт внутри него, класс paused ставится на host,
+   якоря не трогают hash страницы, наблюдатели и слушатели снимаются при размонтировании. Логика — как в макете. */
+window.ShokPresentation = (() => {
+  let controller = null;
+  let observers = [];
+  let alive = false;
+  function mount(host, shadow, { scrollTo } = {}) {
+    unmount();
+    controller = new AbortController();
+    alive = true;
+    const { signal } = controller;
+    const $ = id => shadow.getElementById(id);
+    const $$ = s => [...shadow.querySelectorAll(s)];
+    const observe = o => { observers.push(o); return o; };
+
+    /* ---- app.js ---- */
+    function activate(selector, b) { $$(selector).forEach(a => { a.classList.toggle('active', a === b); a.setAttribute('aria-pressed', String(a === b)); }); }
+    const art = shadow.querySelector('.compare-art'), divider = shadow.querySelector('.divider'); let split = 50;
+    function setSplit(value) { split = Math.max(0, Math.min(100, value)); $('compare').style.setProperty('--split', split + '%'); divider.setAttribute('aria-valuenow', Math.round(split)); divider.setAttribute('aria-valuetext', Math.round(split) + ' percent dense'); }
+    function dragSplit(e) { const r = art.getBoundingClientRect(); setSplit((e.clientX - r.left) / r.width * 100); }
+    let dragging = false; art.addEventListener('pointerdown', e => { dragging = true; art.setPointerCapture(e.pointerId); dragSplit(e); divider.focus({ preventScroll: true }); }); art.addEventListener('pointermove', e => { if (dragging) dragSplit(e); }); art.addEventListener('pointerup', () => dragging = false); art.addEventListener('pointercancel', () => dragging = false); divider.addEventListener('keydown', e => { const step = e.shiftKey ? 10 : 2; if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) { e.preventDefault(); setSplit(e.key === 'Home' ? 0 : e.key === 'End' ? 100 : split + (e.key === 'ArrowLeft' ? -step : step)); } });
+    const films = [['кТо-То|в ДоМе.', 'ПРЕМЬЕРА / УЖАСЫ', 'СЕГОДНЯ　23:40'], ['ПоСЛедНиЙ|вЫхоД', 'НОЧНОЙ СЕАНС / СЛЕШЕР', 'ПЯТНИЦА　00:15'], ['нЕ|ДыШи.', 'ПСИХОЛОГИЧЕСКИЙ ТРИЛЛЕР', 'ЗАВТРА　22:30']]; let film = 0;
+    function replay() { const a = films[film], title = $('film-title'); title.replaceChildren(); title.setAttribute('aria-label', a[0].replace('|', ' ')); let n = 0; a[0].split('|').forEach(line => { const row = document.createElement('span'); row.className = 'cutout-row'; [...line].forEach((c, i) => { const letter = document.createElement('span'); letter.className = c === ' ' ? 'cutout-space' : 'cut-letter'; letter.textContent = c; letter.setAttribute('aria-hidden', 'true'); letter.style.setProperty('--r', [-7, 4, -3, 7, -5, 2][n % 6] + 'deg'); letter.style.setProperty('--s', [1, .85, 1.12, .94, 1.04, .88][n % 6]); letter.style.setProperty('--dy', [0, 8, -5, 4, -7, 2][n % 6] + 'px'); letter.style.setProperty('--delay', n * 45 + 'ms'); letter.style.setProperty('--from-x', ((n % 2 ? 1 : -1) * (80 + n * 13)) + 'px'); letter.style.setProperty('--from-y', ((n % 3 ? 1 : -1) * (50 + n * 7)) + 'px'); const edges = []; for (let k = 0; k < 6; k++) edges.push(`${k * 20}% ${(n * 7 + k * 11) % 5}%`); for (let k = 1; k < 6; k++) edges.push(`${100 - (n + k * 3) % 5}% ${k * 20}%`); for (let k = 4; k >= 0; k--) edges.push(`${k * 20}% ${100 - (n * 3 + k * 7) % 5}%`); for (let k = 4; k > 0; k--) edges.push(`${(n + k * 5) % 4}% ${k * 20}%`); letter.style.clipPath = 'polygon(' + edges.join(',') + ')'; row.append(letter); n++; }); title.append(row); }); $('film-type').textContent = a[1]; $('film-time').textContent = a[2]; const time = $('film-time'); time.classList.remove('time-arrival'); void time.offsetWidth; time.classList.add('time-arrival'); }
+    $$('[data-film]').forEach(b => b.onclick = () => { film = +b.dataset.film; activate('[data-film]', b); replay(); }); $('replay').onclick = replay; replay();
+    const alphabets = { cyr: 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ', lat: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', num: '0123456789!?&@#%«»' }; let script = 'cyr', surface = 'dense';
+    function choose(c, b) { $('large-glyph').textContent = c; $('glyph-code').textContent = 'U+' + c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0'); activate('#glyph-grid button', b); }
+    function grid() { const chars = surface === 'worn' ? alphabets[script].toLowerCase() : alphabets[script]; $('glyph-grid').replaceChildren(); [...chars].forEach(c => { const b = document.createElement('button'); b.textContent = c; b.setAttribute('aria-label', 'Inspect ' + c); b.onclick = () => choose(c, b); $('glyph-grid').append(b); }); while ($('glyph-grid').children.length < 35) { const e = document.createElement('span'); e.setAttribute('aria-hidden', 'true'); $('glyph-grid').append(e); } $$('[data-case]').forEach(b => b.disabled = script === 'num'); const n = script === 'cyr' ? 7 : 0; choose(chars[n], $('glyph-grid').children[n]); }
+    $$('[data-script]').forEach(b => b.onclick = () => { script = b.dataset.script; activate('[data-script]', b); grid(); }); $$('[data-case]').forEach(b => b.onclick = () => { surface = b.dataset.case; activate('[data-case]', b); grid(); }); grid();
+    const field = $('type-text'), slider = $('size'), ctx = document.createElement('canvas').getContext('2d'); let auto = true, worn = true;
+    function fit() { if (!alive) return; ctx.font = '100px Shok'; const longest = Math.max(1, ...field.value.split('\n').map(t => ctx.measureText(t).width)); const style = getComputedStyle(field); const available = field.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 8; const max = Math.max(12, Math.min(160, Math.floor(available * 100 / longest))); slider.min = Math.min(32, max); slider.max = max; if (auto || +slider.value > max) slider.value = max; field.style.fontSize = slider.value + 'px'; $('size-value').textContent = slider.value + ' PX'; field.style.height = 'auto'; field.style.height = field.scrollHeight + 4 + 'px'; }
+    slider.oninput = () => { auto = false; fit(); }; field.oninput = fit; $('texture').onclick = () => { worn = !worn; field.value = worn ? field.value.toLowerCase() : field.value.toUpperCase(); $('texture').textContent = worn ? 'DISTRESSED' : 'DENSE'; $('texture').setAttribute('aria-pressed', worn); fit(); }; $('reset').onclick = () => { field.value = 'не ВыКлючай\nсВет.'; worn = true; auto = true; $('texture').textContent = 'DISTRESSED'; $('texture').setAttribute('aria-pressed', 'true'); fit(); }; document.fonts.ready.then(fit); addEventListener('resize', fit, { signal });
+    const flashlight = shadow.querySelector('.flashlight'); const hidden = flashlight.querySelector('.hidden-type'), message = hidden.textContent; hidden.replaceChildren(); const bloodLetters = [...message].map(c => { const s = document.createElement('span'); s.textContent = c === ' ' ? ' ' : c; hidden.append(s); return { el: s, lit: false, last: 0 }; }); const bloodLayer = document.createElement('div'); bloodLayer.className = 'blood-layer'; bloodLayer.setAttribute('aria-hidden', 'true'); flashlight.append(bloodLayer);
+    function inkPoint(letter, r) { const c = document.createElement('canvas'); c.width = Math.max(1, Math.ceil(r.width)); c.height = Math.max(1, Math.ceil(r.height)); const ctx = c.getContext('2d', { willReadFrequently: true }); ctx.font = getComputedStyle(hidden).fontSize + ' Shok'; ctx.fillStyle = '#fff'; const m = ctx.measureText(letter); ctx.fillText(letter, 0, (c.height + m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2); const data = ctx.getImageData(0, 0, c.width, c.height).data; const points = []; for (let yy = 0; yy < c.height; yy += 3) for (let xx = 0; xx < c.width; xx += 3) if (data[(yy * c.width + xx) * 4 + 3] > 160) points.push([xx, yy]); return points.length ? points[Math.floor(Math.random() * points.length)] : [r.width / 2, r.height * .6]; }
+    function blood(x, y, radius) { const base = flashlight.getBoundingClientRect(), now = performance.now(); bloodLetters.forEach((l, i) => { const r = l.el.getBoundingClientRect(), cx = r.left - base.left + r.width / 2, cy = r.top - base.top + r.height / 2, lit = Math.hypot(cx - x, cy - y) < radius * .78 + r.width * .18; if (l.lit && !lit && now - l.last > 500 && l.el.textContent.trim()) { l.last = now; for (let n = 0; n < 2; n++) { const drip = document.createElement('i'); drip.className = 'blood-drip'; const start = inkPoint(l.el.textContent, r); drip.style.left = (r.left - base.left + start[0]) + 'px'; drip.style.top = (r.top - base.top + start[1]) + 'px'; drip.style.setProperty('--length', (40 + Math.random() * 120) + 'px'); drip.style.setProperty('--fall', (flashlight.clientHeight + 180) + 'px'); drip.style.setProperty('--delay', n * 120 + 'ms'); bloodLayer.append(drip); drip.addEventListener('animationend', () => drip.remove(), { once: true }); } while (bloodLayer.children.length > 60) bloodLayer.firstChild.remove(); } l.lit = lit; }); }
+    let lx = 35, ly = 50;
+    function light(px, py) { if (!alive) return; lx = Math.max(0, Math.min(100, px)); ly = Math.max(0, Math.min(100, py)); flashlight.style.setProperty('--x', lx + '%'); flashlight.style.setProperty('--y', ly + '%'); const w = flashlight.clientWidth, h = flashlight.clientHeight, x = lx * w / 100, y = ly * h / 100, ox = w * .07, oy = h * .88; const dx = x - ox, dy = y - oy, dist = Math.max(1, Math.hypot(dx, dy)), radius = window.innerWidth <= 700 ? 95 : Math.min(145, window.innerWidth * .2), nx = -dy / dist * radius, ny = dx / dist * radius; blood(x, y, radius); const gradient = flashlight.querySelector('#beam-fill'); gradient.setAttribute('gradientUnits', 'userSpaceOnUse'); gradient.setAttribute('x1', ox); gradient.setAttribute('y1', oy); gradient.setAttribute('x2', x); gradient.setAttribute('y2', y); flashlight.querySelector('.beam polygon').setAttribute('points', `${ox},${oy} ${x + nx},${y + ny} ${x - nx},${y - ny}`); flashlight.querySelector('.torch').style.transform = `translate(-85%,-50%) rotate(${Math.atan2(dy, dx)}rad)`; }
+    function pointer(e) { const r = flashlight.getBoundingClientRect(); light((e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100); }
+    flashlight.onpointermove = pointer; flashlight.onpointerdown = e => { flashlight.setPointerCapture(e.pointerId); pointer(e); }; flashlight.onkeydown = e => { const a = { ArrowLeft: [-4, 0], ArrowRight: [4, 0], ArrowUp: [0, -4], ArrowDown: [0, 4] }[e.key]; if (a) { e.preventDefault(); light(lx + a[0], ly + a[1]); } };
+    $('pause').onclick = () => { const p = host.classList.toggle('paused'); $('pause').textContent = p ? '▶' : 'Ⅱ'; $('pause').setAttribute('aria-pressed', p); $('pause').setAttribute('aria-label', p ? 'Resume motion' : 'Pause motion'); };
+    const visible = new Set(); const observer = observe(new IntersectionObserver(es => es.forEach(e => { e.target.classList.toggle('offscreen', !e.isIntersecting); if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); }), { threshold: .03 })); $$('section').forEach(s => observer.observe(s)); light(55, 46); addEventListener('resize', () => light(lx, ly), { signal });
+
+    /* ---- headline-motion.js ---- */
+    { const reduce = matchMedia('(prefers-reduced-motion: reduce)'); $$('h1,h2,.ending>p,.blade-message').forEach(h => { if (h.id === 'film-title') return; const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT); const texts = []; while (walker.nextNode()) texts.push(walker.currentNode); let index = 0; texts.forEach(t => { const f = document.createDocumentFragment(); t.textContent.split(/(\s+)/).forEach(word => { if (!word.trim()) { f.append(document.createTextNode(word)); return; } const w = document.createElement('span'); w.className = 'heading-word'; [...word].forEach(c => { const s = document.createElement('span'); s.className = 'moving-glyph'; s.textContent = c; s.style.setProperty('--order', index); s.style.setProperty('--gx', ((index % 2 ? 1 : -1) * (20 + index % 5 * 8)) + 'px'); s.style.setProperty('--gy', ((index % 3 ? 1 : -1) * (25 + index % 4 * 10)) + 'px'); index++; w.append(s); }); f.append(w); }); t.replaceWith(f); }); h.classList.add('motion-heading'); }); const io = observe(new IntersectionObserver(es => es.forEach(e => { e.target.classList.toggle('motion-entered', e.isIntersecting); }), { threshold: .16 })); $$('section').forEach(s => io.observe(s)); }
+
+    /* ---- якоря макета: через скролл портфолио, hash страницы не трогаем ---- */
+    shadow.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const target = id === 'top' ? 0 : shadow.getElementById(id);
+      if (target === null) return;
+      if (scrollTo) scrollTo(target);
+      else if (target === 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+      else target.scrollIntoView({ behavior: 'smooth' });
+    }, { signal });
+  }
+  function unmount() {
+    alive = false;
+    controller?.abort();
+    controller = null;
+    observers.forEach(o => o.disconnect());
+    observers = [];
+  }
+  return { mount, unmount };
+})();
