@@ -1183,11 +1183,11 @@
         <a class="pj-back roll-host" href="#${p.isLogo ? 'logos' : p.isFont ? 'fonts' : 'branding'}">${arrowSVG('\u2190')}<span class="roll">${chars(p.isFont ? 'All fonts' : p.isLogo ? 'All logos' : 'All projects')}</span></a>
         <span>${p.isLib ? 'Type library \u00b7 ' : p.isFont ? 'Custom fonts \u00b7 ' : p.isLogo ? 'Logos \u00b7 ' : ''}${pad(i + 1)} / ${pad(group.length)}</span>
       </div>
-      <h1 class="pj-title${p.isFont ? ' sr-only' : ''}${titleFace ? ' has-face' : ''}${S?.tweak?.text ? ' keep-case' : ''}${S?.tweak?.bolder ? ' is-bolder' : ''}"${titleFace}>${chars(S?.tweak?.text ? S.tweak.text(nameOf(p)) : nameOf(p))}</h1>
+      <h1 class="pj-title${p.isFont && !PRES[p.slug] ? ' sr-only' : ''}${titleFace ? ' has-face' : ''}${S?.tweak?.text ? ' keep-case' : ''}${S?.tweak?.bolder ? ' is-bolder' : ''}"${titleFace}>${chars(S?.tweak?.text ? S.tweak.text(nameOf(p)) : nameOf(p))}</h1>
       <div class="pj-meta${meta.length === 2 ? ' is-two' : ''}">
         ${meta.map(([k, v]) => `<div><span class="mono">${k}</span>${esc(v)}</div>`).join('')}
       </div>
-      ${S ? `<div class="pj-plate">${facePlate(p)}</div>` + specHTML(S) : `${p.isFont && fontImage(p.slug) ? `<div class="pj-plate is-img"><img src="${fontImage(p.slug).src}" alt="${esc(nameOf(p))}"></div>` : ''}
+      ${S && !PRES[p.slug] ? `<div class="pj-plate">${facePlate(p)}</div>` + specHTML(S) : `${p.isFont && !PRES[p.slug] && fontImage(p.slug) ? `<div class="pj-plate is-img"><img src="${fontImage(p.slug).src}" alt="${esc(nameOf(p))}"></div>` : ''}
       ${PRES[p.slug] || window.PROTOS?.[p.slug]?.replacesCover ? '' : `<figure class="pj-cover shot${p.isLogo ? ' logo-shot' : ''}" data-n="0">${media(cover, `${p.title}, cover`, 'loading="eager" fetchpriority="high"')}</figure>`}
       ${PRES[p.slug] ? `<div class="pj-presentation" id="pres"></div>` : window.PROTOS?.[p.slug] ? '<div class="proto"></div>' : ''}
       ${PRES[p.slug] || window.PROTOS?.[p.slug]?.replacesGallery ? '' : `<div class="pj-gallery${p.isLogo ? ' is-logos' : ''}">${gallery}</div>`}`}
@@ -1204,12 +1204,12 @@
     if (BRAND[p.slug]) pj.style.setProperty('--accent', BRAND[p.slug]); else pj.style.removeProperty('--accent');
     const all = p.images.map((im, k) => ({ src: im.src, alt: `${p.title}, image ${k + 1}` }));
     pj._images = S ? [] : all; // \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u0435\u0442 \u0441 data-n \u0443 .shot
-    if (S) bindSpec(S);
+    if (S && !PRES[p.slug]) bindSpec(S); // у презентации нет спесимена, но шрифт заголовка грузим ниже как обычно
     // \u0418\u043d\u0442\u0435\u0440\u0430\u043a\u0442\u0438\u0432\u043d\u044b\u0439 \u043f\u0440\u043e\u0442\u043e\u0442\u0438\u043f (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 Player One) \u2014 \u043f\u043e\u0434 \u043e\u0431\u043b\u043e\u0436\u043a\u043e\u0439
     if (window.PROTOS?.[p.slug] && !PRES[p.slug]) window.PROTOS[p.slug].mount($('.proto', pj), { images: p.images });
     if (PRES[p.slug]) mountPresentation(p.slug, $('#pres', pj));
     pjCover = $('.pj-cover img', pj);
-    if (S) { S.styles.forEach(loadFace); loadFace(S.styles[S.default]).then(() => refitPlates(pj)); }
+    if (S) { S.styles.forEach(loadFace); loadFace(S.styles[S.default]).then(() => { if (!PRES[p.slug]) refitPlates(pj); }); }
     bindPreviews(pj);
     observe(pj);
     document.title = `${nameOf(p)} \u2014 Zero too Hero`;
@@ -1233,6 +1233,7 @@
   const PRES = {
     betrush: { api: () => window.BetrushPresentation, v: 23, files: ['betrush-pres.html', 'betrush-pres.css'] },
     e302: { api: () => window.E302Presentation, v: 3, files: ['e302-pres.html', 'e302-pres-style.css'] },
+    'font-neo-duplicate': { api: () => window.CriminalPresentation, v: 1, files: ['criminal-pres.html', 'criminal-pres.css'] },
   };
   const presCache = {};
   function mountPresentation(slug, root) {

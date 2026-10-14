@@ -282,3 +282,93 @@ window.E302Presentation = (() => {
   }
   return { mount, unmount };
 })();
+/* Скрипты презентации Criminal (app.js + motion.js + details.js + connections.js из макета), переведённые на контейнер:
+   разметка и стили живут в Shadow DOM, поиск элементов идёт внутри него, якоря не трогают hash страницы,
+   цикл анимации, наблюдатели и слушатели останавливаются при размонтировании. Логика — как в макете. */
+window.CriminalPresentation = (() => {
+  let controller = null;
+  let observers = [];
+  let alive = false;
+  function mount(host, shadow, { scrollTo } = {}) {
+    unmount();
+    controller = new AbortController();
+    alive = true;
+    const { signal } = controller;
+    const $ = id => shadow.getElementById(id);
+    const $$ = s => [...shadow.querySelectorAll(s)];
+    const observe = o => { observers.push(o); return o; };
+
+    /* ---- app.js ---- */
+    const shows = [['ПОСЛЕДНИЙ<br>СВИДЕТЕЛЬ', 'ДЕТЕКТИВНЫЙ СЕРИАЛ', 'СЕГОДНЯ / 21:00'], ['Без<br>следа', 'ПСИХОЛОГИЧЕСКИЙ ТРИЛЛЕР', 'ПЯТНИЦА / 23:45'], ['ЧУЖОЕ<br>АЛИБИ', 'КРИМИНАЛЬНОЕ КИНО', 'ЗАВТРА / 19:30']];
+    function active(selector, b) { $$(selector).forEach(x => { x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', String(x === b)); }); }
+    $$('[data-show]').forEach(b => b.onclick = () => { const s = shows[+b.dataset.show]; $('show').innerHTML = s[0]; $('genre').textContent = s[1]; $('time').textContent = s[2]; active('[data-show]', b); });
+    const scripts = { cyr: 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ', lat: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', num: '0123456789!?&@%«»₽€' };
+    function choose(c, b) { $('big').textContent = c; $('unicode').textContent = 'U+' + c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0'); active('#grid button', b); }
+    let currentScript = 'cyr', currentCase = 'upper';
+    function render(key) { currentScript = key; const chars = currentCase === 'lower' ? scripts[key].toLowerCase() : scripts[key]; $$('[data-case]').forEach(b => b.disabled = key === 'num'); $('grid').replaceChildren(); [...chars].forEach(c => { const b = document.createElement('button'); b.textContent = c; b.setAttribute('aria-label', 'Show glyph ' + c); b.onclick = () => choose(c, b); $('grid').append(b); }); while ($('grid').children.length < 35) { const empty = document.createElement('span'); empty.className = 'glyph-placeholder'; empty.setAttribute('aria-hidden', 'true'); $('grid').append(empty); } const n = key === 'cyr' ? 7 : 0; choose(chars[n], $('grid').children[n]); }
+    $$('[data-script]').forEach(b => b.onclick = () => { active('[data-script]', b); render(b.dataset.script); });
+    $$('[data-case]').forEach(b => b.onclick = () => { currentCase = b.dataset.case; active('[data-case]', b); render(currentScript); });
+    render('cyr');
+    const measureCanvas = document.createElement('canvas'), measureContext = measureCanvas.getContext('2d'); let autoSize = true;
+    function resize() { if (!alive) return; const field = $('text'), slider = $('size'); measureContext.font = '100px Criminal'; const longest = Math.max(1, ...field.value.split('\n').map(line => measureContext.measureText(line).width)); const safeWidth = Math.max(20, field.clientWidth - parseFloat(getComputedStyle(field).paddingRight) - parseFloat(getComputedStyle(field).paddingLeft) - 4); const fit = Math.max(12, Math.floor(safeWidth * 100 / longest)); const maximum = Math.min(180, fit); slider.min = Math.min(32, maximum); slider.max = maximum; if (autoSize || +slider.value > maximum) slider.value = maximum; field.style.fontSize = slider.value + 'px'; $('value').textContent = slider.value + ' PX'; field.style.height = 'auto'; field.style.height = field.scrollHeight + 4 + 'px'; }
+    $('size').oninput = () => { autoSize = false; resize(); }; $('text').addEventListener('input', resize); addEventListener('resize', resize, { signal }); document.fonts.ready.then(resize);
+    $('invert').onclick = function () { this.setAttribute('aria-pressed', shadow.querySelector('.tester').classList.toggle('inverted')); };
+    $('reset').onclick = () => { $('text').value = 'У каждого\nесть мотив.'; autoSize = true; resize(); shadow.querySelector('.tester').classList.remove('inverted'); $('invert').setAttribute('aria-pressed', 'false'); };
+
+    /* ---- motion.js ---- */
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const states = new Map();
+    function setup(el, source) { const text = source || el.dataset.type; el.dataset.type = text; el.replaceChildren(); const letters = []; text.split('|').forEach((line, i) => { if (i) el.append(document.createElement('br')); [...line].forEach(c => { const s = document.createElement('span'); s.className = 'letter'; s.textContent = c; el.append(s); letters.push(s); }); }); const caret = document.createElement('i'); caret.className = 'type-caret'; caret.setAttribute('aria-hidden', 'true'); el.append(caret); const s = { el, letters, caret, pos: 0, elapsed: 0, hold: 0, section: el.closest('section'), done: false }; states.set(el, s); if (reduce.matches) finish(s); return s; }
+    function place(s) { const letter = s.letters[Math.max(0, s.pos - 1)]; if (!letter) return; const r = letter.getBoundingClientRect(), p = s.el.getBoundingClientRect(); s.caret.style.left = (s.pos ? r.right - p.left : r.left - p.left) + 'px'; s.caret.style.top = (r.top - p.top + r.height * .15) + 'px'; s.caret.style.height = r.height * .68 + 'px'; if (s.el.tagName === 'H1') shadow.querySelector('.carriage').style.setProperty('--carriage', Math.min(98, s.pos / s.letters.length * 98) + '%'); }
+    function finish(s) { s.letters.forEach(l => l.classList.add('ink')); s.pos = s.letters.length; s.done = true; place(s); }
+    $$('[data-type]').forEach(el => setup(el));
+    const sections = $$('main>section'); const visible = new Set();
+    const observer = observe(new IntersectionObserver(es => es.forEach(e => { e.target.classList.toggle('offscreen', !e.isIntersecting); if (e.isIntersecting) { visible.add(e.target); e.target.classList.add('entered'); } else visible.delete(e.target); }), { threshold: .08 })); sections.forEach(s => { s.classList.add('reveal-section'); observer.observe(s); });
+    let last = 0, clock = 0, clockPaint = 0;
+    function frame(t) { if (!alive) return; const dt = Math.min(t - last, 100); last = t; if (!document.hidden && !host.classList.contains('paused') && !reduce.matches) { states.forEach(s => { if (!visible.has(s.section)) return; if (s.done) { s.hold += dt; if (s.hold > 5200) { s.letters.forEach(l => l.classList.remove('ink', 'strike')); s.pos = 0; s.done = false; s.hold = 0; s.elapsed = -600; place(s); } return; } s.elapsed += dt; const speed = s.el.classList.contains('report-line') ? 72 : 145; if (s.elapsed >= speed) { s.elapsed = 0; const l = s.letters[s.pos++]; if (l) { l.classList.add('ink', 'strike'); place(s); } if (s.pos >= s.letters.length) s.done = true; } }); if (visible.has($('air'))) { clock += dt; clockPaint += dt; if (clockPaint > 80) { clockPaint = 0; const frames = Math.floor(clock / 40), seconds = Math.floor(clock / 1000); $('timecode').textContent = [Math.floor(seconds / 3600), Math.floor(seconds / 60) % 60, seconds % 60, frames % 25].map(n => String(n).padStart(2, '0')).join(':'); } } } requestAnimationFrame(frame); }
+    requestAnimationFrame(frame);
+    $$('[data-show]').forEach(b => b.addEventListener('click', () => { const el = $('show'); const s = setup(el, el.innerHTML.replace(/<br\s*\/?\s*>/gi, '|')); el.setAttribute('aria-label', s.el.dataset.type.replaceAll('|', ' ')); const scene = shadow.querySelector('.scene'); scene.classList.remove('playing'); requestAnimationFrame(() => scene.classList.add('playing')); }));
+    $$('.secret').forEach(b => b.onclick = () => { const open = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded', open); b.setAttribute('aria-label', open ? 'Conceal witness identity' : 'Reveal witness identity'); });
+    reduce.addEventListener('change', () => { if (reduce.matches) states.forEach(finish); }, { signal }); addEventListener('resize', () => states.forEach(place), { signal }); document.fonts.ready.then(() => { if (alive) states.forEach(place); });
+    { const scene = shadow.querySelector('.scene'); $('tv-replay').onclick = () => { scene.classList.remove('tracking-replay'); void scene.offsetWidth; scene.classList.add('tracking-replay'); scene.querySelectorAll('.tracking,.person').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; }); }; }
+
+    /* ---- details.js ---- */
+    { const stage = shadow.querySelector('.anatomy-stage'), svg = $('anatomy-svg'); const targets = [[131, 195], [531, 314], [1049, 389]]; let x = targets[0][0], y = targets[0][1];
+      function move(nx, ny) { x = Math.max(140, Math.min(1080, nx)); y = Math.max(130, Math.min(430, ny)); for (const id of ['lens-ring', 'lens-clip-circle']) { const c = $(id); c.setAttribute('cx', x); c.setAttribute('cy', y); } $('zoom-outlines').setAttribute('transform', `translate(${x} ${y}) scale(3) translate(${-x} ${-y})`); const side = x > 850 ? -1 : 1; $('lens-handle-neck').setAttribute('d', `M${x + side * 145} ${y + 145}L${x + side * 177} ${y + 177}`); $('lens-handle').setAttribute('d', `M${x + side * 176} ${y + 176}L${x + side * 270} ${y + 270}`); const label = $('lens-label'); label.setAttribute('x', x); label.setAttribute('y', y + 235); }
+      function pointer(e) { const matrix = svg.getScreenCTM(); if (!matrix) return; const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(matrix.inverse()); move(pt.x, pt.y); }
+      stage.addEventListener('pointermove', pointer); stage.addEventListener('pointerdown', e => { stage.setPointerCapture(e.pointerId); pointer(e); }); stage.addEventListener('keydown', e => { const step = e.shiftKey ? 30 : 10; const offsets = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }; if (offsets[e.key]) { e.preventDefault(); move(x + offsets[e.key][0], y + offsets[e.key][1]); } });
+      $$('[data-detail]').forEach(b => b.onclick = () => { const n = +b.dataset.detail; move(...targets[n]); $$('[data-detail]').forEach(a => { a.classList.toggle('active', a === b); a.setAttribute('aria-pressed', String(a === b)); }); $('detail-caption').textContent = b.textContent; });
+      move(...targets[0]); const arrival = observe(new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { move(...targets[0]); arrival.disconnect(); } }, { threshold: .25 })); arrival.observe(stage); }
+
+    /* ---- connections.js ---- */
+    { const main = shadow.querySelector('main'), ns = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(ns, 'svg'); svg.classList.add('case-threads'); svg.setAttribute('aria-hidden', 'true'); main.prepend(svg);
+      const specs = [['.ribbon', .29, .2], ['.stamp', .5, 0], ['.tv-shell', .96, .06], ['.ink-composition', .95, .03], ['.case-number', .5, .05], ['.report', .15, .03], ['.clue', .9, .05], ['.alphabet', .01, .05], ['.anatomy-heading', .97, .03], ['.schedule-head', .97, .1], ['.tester .test-controls', .02, .05], ['.end>p', .95, .02]];
+      const nodes = specs.map(([selector, x, y], i) => { const el = shadow.querySelector(selector), pin = document.createElement('button'); pin.className = 'evidence-pin'; pin.type = 'button'; pin.innerHTML = '<span></span>'; pin.setAttribute('aria-label', 'Follow connection ' + String(i + 1).padStart(2, '0')); pin.title = 'FOLLOW THE EVIDENCE'; main.append(pin); return { el, pin, x, y }; });
+      const links = nodes.slice(1).map(() => { const g = document.createElementNS(ns, 'g'); g.classList.add('thread-link'); for (const cls of ['thread-red']) { const p = document.createElementNS(ns, 'path'); p.setAttribute('class', cls); g.append(p); } svg.append(g); return g; });
+      let points = []; function layout() { if (!alive) return; const base = main.getBoundingClientRect(), w = main.clientWidth, h = main.offsetHeight; svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.style.height = h + 'px'; points = nodes.map(n => { const r = n.el.getBoundingClientRect(), x = r.left - base.left + r.width * n.x, y = r.top - base.top + r.height * n.y; n.pin.style.left = x + 'px'; n.pin.style.top = y + 'px'; return { x, y }; }); links.forEach((g, i) => { const a = points[i], b = points[i + 1], d = `M${a.x},${a.y} L${b.x},${b.y}`; g.querySelectorAll('path').forEach(p => p.setAttribute('d', d)); }); }
+      nodes.forEach((n, i) => n.pin.onclick = () => { const next = nodes[(i + 1) % nodes.length]; next.el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }); next.pin.focus({ preventScroll: true }); });
+      let pending = 0; function update() { cancelAnimationFrame(pending); pending = requestAnimationFrame(layout); } const ro = new ResizeObserver(update); ro.observe(main); observers.push(ro); addEventListener('resize', update, { signal }); document.fonts.ready.then(update); layout(); }
+
+    /* ---- якоря макета: через скролл портфолио, hash страницы не трогаем ---- */
+    shadow.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const target = id === 'home' ? 0 : shadow.getElementById(id);
+      if (target === null) return;
+      if (scrollTo) scrollTo(target);
+      else if (target === 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+      else target.scrollIntoView({ behavior: 'smooth' });
+    }, { signal });
+  }
+  function unmount() {
+    alive = false;
+    controller?.abort();
+    controller = null;
+    observers.forEach(o => o.disconnect());
+    observers = [];
+  }
+  return { mount, unmount };
+})();
