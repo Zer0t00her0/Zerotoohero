@@ -478,6 +478,10 @@
 
   /* \u2014\u2014\u2014 Section titles \u2014\u2014\u2014 */
   const FONTS_ALL = [...FP, ...LIB];
+  // Вкладки шрифтов: Commercial — заданный список, Type library — все остальные (кастомные проекты + библиотека)
+  const COMMERCIAL = ['font-sts_sans_', 'font-neo-duplicate', 'lib-drunk-cherry', 'lib-hbttt', 'font-premium', 'font-shock', 'font-pl_grotesque', 'font-comedy', 'font-lovely'];
+  const COMM = COMMERCIAL.map(s => FONTS_ALL.find(p => p.slug === s)).filter(Boolean);
+  const LIBRARY = FONTS_ALL.filter(p => !COMM.includes(p));
   const counts = { Branding: P.length, Logos: LOGOS.length, Fonts: FONTS_ALL.length };
   $$('.sec-title').forEach(h => {
     const t = h.dataset.title;
@@ -581,11 +585,10 @@
       <span class="fabout mono">${esc(about)}</span>
     </a></li>`;
   };
-  $('.font-list').innerHTML = fonts.map((f, i) => fontRow({
-    slug: f.project.slug, name: f.name.replace(/_/g, ' '), about: f.about, preview: SPEC[f.project.slug] ? null : f.image.src,
-  }, i)).join('');
-  $('.lib-list').innerHTML = LIB.map(fontRow).join('');
-  $('.lib-count').textContent = LIB.length;
+  const rowOf = p => ({ slug: p.slug, name: p.name, about: p.about, preview: SPEC[p.slug] ? null : fonts.find(f => f.project?.slug === p.slug)?.image?.src });
+  $('.font-list').innerHTML = COMM.map((p, i) => fontRow(rowOf(p), i)).join('');
+  $('.lib-list').innerHTML = LIBRARY.map((p, i) => fontRow(rowOf(p), i)).join('');
+  $('.lib-count').textContent = LIBRARY.length;
   // \u041f\u043e\u0434\u0433\u043e\u043d\u044f\u0435\u043c \u0441\u0432\u043e\u0439 \u0448\u0440\u0438\u0444\u0442 \u043a \u0448\u0440\u0438\u0444\u0442\u0443 \u0441\u0430\u0439\u0442\u0430: \u0442\u0430 \u0436\u0435 \u0432\u044b\u0441\u043e\u0442\u0430 \u043f\u0440\u043e\u043f\u0438\u0441\u043d\u044b\u0445 \u0438 \u0442\u043e\u0442 \u0436\u0435 \u0446\u0435\u043d\u0442\u0440 \u043f\u043e \u0432\u0435\u0440\u0442\u0438\u043a\u0430\u043b\u0438.
   // \u041c\u0435\u0440\u044f\u0435\u043c \u043d\u0430 canvas: \u0432\u044b\u0441\u043e\u0442\u0443 \u00abH\u00bb \u0438 \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0431\u0430\u0437\u043e\u0432\u043e\u0439 \u043b\u0438\u043d\u0438\u0438 \u043f\u0440\u0438 line-height: 1
   const measureCtx = document.createElement('canvas').getContext('2d');
@@ -615,7 +618,7 @@
     list.addEventListener('mouseleave', hidePreview);
   });
 
-  $('.custom-count').textContent = fonts.length;
+  $('.custom-count').textContent = COMM.length;
 
   /* \u2014\u2014\u2014 Fonts: \u0432\u043a\u043b\u0430\u0434\u043a\u0438 Custom / Type library \u2014 \u043d\u0430 \u044d\u043a\u0440\u0430\u043d\u0435 \u043e\u0434\u0438\u043d \u0431\u043b\u043e\u043a \u0437\u0430 \u0440\u0430\u0437 \u2014\u2014\u2014 */
   const fontTabs = $('.font-tabs');
@@ -1150,7 +1153,7 @@
     // \u0423\u0445\u043e\u0434\u044f \u0441 \u043b\u044e\u0431\u043e\u0433\u043e \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u0433\u0430\u0441\u0438\u043c \u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0435 scroll/resize-\u0441\u043b\u0443\u0448\u0430\u0442\u0435\u043b\u0438 \u043f\u0440\u0435\u0437\u0435\u043d\u0442\u0430\u0446\u0438\u0438 BetRush, \u0438\u043d\u0430\u0447\u0435 \u043e\u043d\u0438 \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u0432\u0438\u0441\u0435\u0442\u044c \u043d\u0430 \u043e\u0442\u0441\u043e\u0435\u0434\u0438\u043d\u0451\u043d\u043d\u044b\u0445 \u0443\u0437\u043b\u0430\u0445 DOM
     Object.values(PRES).forEach(c => c.api()?.unmount());
     // \u041f\u0440\u043e\u0435\u043a\u0442 \u043b\u0438\u0441\u0442\u0430\u0435\u0442\u0441\u044f \u0432\u043d\u0443\u0442\u0440\u0438 \u0441\u0432\u043e\u0435\u0439 \u0433\u0440\u0443\u043f\u043f\u044b: \u0431\u0440\u0435\u043d\u0434\u0438\u043d\u0433 \u0438\u043b\u0438 \u0448\u0440\u0438\u0444\u0442\u044b
-    const group = [LIB, FP, LOGOS].find(g => g.some(p => p.slug === slug)) || P;
+    const group = [COMM, LIBRARY, LOGOS].find(g => g.some(p => p.slug === slug)) || P;
     const i = group.findIndex(p => p.slug === slug);
     if (i < 0) return false;
     const p = group[i];
@@ -1181,7 +1184,7 @@
     pj.innerHTML = `
       <div class="pj-top mono">
         <a class="pj-back roll-host" href="#${p.isLogo ? 'logos' : p.isFont ? 'fonts' : 'branding'}">${arrowSVG('\u2190')}<span class="roll">${chars(p.isFont ? 'All fonts' : p.isLogo ? 'All logos' : 'All projects')}</span></a>
-        <span>${p.isLib ? 'Type library \u00b7 ' : p.isFont ? 'Custom fonts \u00b7 ' : p.isLogo ? 'Logos \u00b7 ' : ''}${pad(i + 1)} / ${pad(group.length)}</span>
+        <span>${COMM.includes(p) ? 'Commercial fonts \u00b7 ' : p.isFont ? 'Type library \u00b7 ' : p.isLogo ? 'Logos \u00b7 ' : ''}${pad(i + 1)} / ${pad(group.length)}</span>
       </div>
       <h1 class="pj-title${p.isFont && !PRES[p.slug] ? ' sr-only' : ''}${titleFace ? ' has-face' : ''}${S?.tweak?.text ? ' keep-case' : ''}${S?.tweak?.bolder ? ' is-bolder' : ''}"${titleFace}>${chars(S?.tweak?.text ? S.tweak.text(nameOf(p)) : nameOf(p))}</h1>
       <div class="pj-meta${meta.length === 2 ? ' is-two' : ''}">
