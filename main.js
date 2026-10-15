@@ -1238,6 +1238,7 @@
     e302: { api: () => window.E302Presentation, v: 3, files: ['e302-pres.html', 'e302-pres-style.css'] },
     'font-neo-duplicate': { api: () => window.CriminalPresentation, v: 1, files: ['criminal-pres.html', 'criminal-pres.css'] },
     'font-shock': { api: () => window.ShokPresentation, v: 1, files: ['shok-pres.html', 'shok-pres.css'] },
+    'lib-gameday': { api: () => window.GollanosPresentation, v: 1, files: ['gollanos-pres.html', 'gollanos-pres.css'] },
   };
   const presCache = {};
   function mountPresentation(slug, root) {

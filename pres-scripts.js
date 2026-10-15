@@ -439,3 +439,48 @@ window.ShokPresentation = (() => {
   }
   return { mount, unmount };
 })();
+/* Скрипт презентации Gollanos (app.js из макета), переведённый на контейнер: разметка и стили живут в Shadow DOM,
+   поиск элементов идёт внутри него, якоря не трогают hash страницы, наблюдатели и слушатели снимаются при размонтировании. */
+window.GollanosPresentation = (() => {
+  let controller = null;
+  let observers = [];
+  let alive = false;
+  function mount(host, shadow, { scrollTo } = {}) {
+    unmount();
+    controller = new AbortController();
+    alive = true;
+    const { signal } = controller;
+    const $ = id => shadow.getElementById(id);
+    const $$ = s => [...shadow.querySelectorAll(s)];
+    const io = new IntersectionObserver(es => es.forEach(e => { e.target.classList.toggle('inview', e.isIntersecting); e.target.classList.toggle('offscreen', !e.isIntersecting); }), { threshold: .1 }); observers.push(io); $$('section').forEach(s => io.observe(s));
+    function active(sel, b) { $$(sel).forEach(n => { n.classList.toggle('active', n === b); n.setAttribute('aria-pressed', String(n === b)); }); }
+    $$('[data-number]').forEach(b => b.onclick = () => { $('number').textContent = b.dataset.number; active('[data-number]', b); $('number').style.animation = 'none'; void $('number').offsetWidth; $('number').style.animation = ''; });
+    $('reassemble').onclick = () => { $$('.slab').forEach(s => { s.style.animation = 'none'; void s.offsetWidth; s.style.animation = ''; }); };
+    const sets = { lat: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', num: '0123456789!?&@#%' }; let set = 'lat', lower = false;
+    function select(c, b) { $('big-glyph').textContent = c; $('code').textContent = 'U+' + c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0'); active('#glyph-grid button', b); }
+    function grid() { const chars = lower ? sets[set].toLowerCase() : sets[set]; $('glyph-grid').replaceChildren(); [...chars].forEach(c => { const b = document.createElement('button'); b.textContent = c; b.onclick = () => select(c, b); $('glyph-grid').append(b); }); select(chars[set === 'lat' ? 6 : 0], $('glyph-grid').children[set === 'lat' ? 6 : 0]); }
+    $$('[data-set]').forEach(b => b.onclick = () => { set = b.dataset.set; active('[data-set]', b); grid(); }); $$('[data-case]').forEach(b => b.onclick = () => { lower = b.dataset.case === 'lower'; active('[data-case]', b); grid(); }); grid();
+    const ctx = document.createElement('canvas').getContext('2d'); let auto = true;
+    function fit() { if (!alive) return; const t = $('text'), s = $('size'); ctx.font = '100px Gollanos'; const width = Math.max(1, ...t.value.split('\n').map(x => ctx.measureText(x).width)), st = getComputedStyle(t), safe = t.clientWidth - parseFloat(st.paddingLeft) - parseFloat(st.paddingRight) - 4, max = Math.min(360, Math.max(12, Math.floor(safe * 100 / width))); s.min = Math.min(30, max); s.max = max; if (auto || +s.value > max) s.value = max; t.style.fontSize = s.value + 'px'; $('size-value').textContent = s.value + ' PX'; t.style.height = 'auto'; t.style.height = t.scrollHeight + 4 + 'px'; }
+    $('size').oninput = () => { auto = false; fit(); }; $('text').oninput = fit; $('colour').onclick = () => shadow.querySelector('.type-test').classList.toggle('inverted'); $('reset').onclick = () => { $('text').value = 'YOUR\nPOSTER.'; auto = true; fit(); }; document.fonts.ready.then(fit); addEventListener('resize', fit, { signal });
+    shadow.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const target = id === 'top' ? 0 : shadow.getElementById(id);
+      if (target === null) return;
+      if (scrollTo) scrollTo(target);
+      else if (target === 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+      else target.scrollIntoView({ behavior: 'smooth' });
+    }, { signal });
+  }
+  function unmount() {
+    alive = false;
+    controller?.abort();
+    controller = null;
+    observers.forEach(o => o.disconnect());
+    observers = [];
+  }
+  return { mount, unmount };
+})();
