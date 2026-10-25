@@ -1239,6 +1239,7 @@
     'font-neo-duplicate': { api: () => window.CriminalPresentation, v: 1, files: ['criminal-pres.html', 'criminal-pres.css'] },
     'font-shock': { api: () => window.ShokPresentation, v: 1, files: ['shok-pres.html', 'shok-pres.css'] },
     'lib-gameday': { api: () => window.GollanosPresentation, v: 1, files: ['gollanos-pres.html', 'gollanos-pres.css'] },
+    'font-action': { api: () => window.ActionPresentation, v: 1, files: ['action-pres.html', 'action-pres.css'] },
   };
   const presCache = {};
   function mountPresentation(slug, root) {
@@ -1251,7 +1252,7 @@
       const shadow = root.shadowRoot ?? root.attachShadow({ mode: 'open' });
       shadow.innerHTML = css.map(x => `<style>${x}</style>`).join('') + doc.body.innerHTML;
       // якоря внутри презентации скроллим как разделы сайта: с отступом под плавающую навигацию
-      c.api()?.mount(root, shadow, { scrollTo: t => t === 0 ? scrollTo(0) : scrollTo(t, { offset: -(navEl.offsetHeight + 20) }) });
+      c.api()?.mount(root, shadow, { scrollTo: t => t === 0 ? scrollTo(0) : scrollTo(t, { offset: -(navEl.offsetHeight + 20) }), scrollRaw: scrollTo, navEl });
     }).catch(() => { delete presCache[slug]; });
   }
   // \u041f\u043e\u0434\u0433\u0440\u0443\u0436\u0430\u0435\u043c \u043f\u0430\u043a\u0435\u0442 \u0437\u0430\u0440\u0430\u043d\u0435\u0435, \u043f\u043e\u043a\u0430 \u043a\u0443\u0440\u0441\u043e\u0440 \u043d\u0430\u0434 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u043c
