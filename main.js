@@ -1240,6 +1240,7 @@
     'font-shock': { api: () => window.ShokPresentation, v: 1, files: ['shok-pres.html', 'shok-pres.css'] },
     'lib-gameday': { api: () => window.GollanosPresentation, v: 1, files: ['gollanos-pres.html', 'gollanos-pres.css'] },
     'font-action': { api: () => window.ActionPresentation, v: 1, files: ['action-pres.html', 'action-pres.css'] },
+    'font-comedy': { api: () => window.ComedyPresentation, v: 1, files: ['comedy-pres.html', 'comedy-pres.css'] },
   };
   const presCache = {};
   function mountPresentation(slug, root) {
